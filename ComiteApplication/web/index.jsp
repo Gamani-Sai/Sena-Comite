@@ -47,18 +47,23 @@
                             <form role="form">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Usuario" name="email" type="text" autofocus>
+                                        <input class="form-control" placeholder="Identificación" name="" type="text" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Confrimar Contraseña" name="password" type="password" value="">
-                                    </div>
                                     <!-- Change this to a button or input when using this as a form -->
-                                    <a href="Menu.jsp" class="btn btn-lg btn-success btn-block">Iniciar</a>
+
                                 </fieldset>
+
+
                             </form>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="row">
+                                <a href="Menu.jsp" class="btn btn-lg btn-success btn-block">Iniciar</a>
+                            </div>
                         </div>
                     </div>
                 </div>

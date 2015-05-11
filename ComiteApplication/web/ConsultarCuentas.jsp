@@ -20,6 +20,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
 
         <!-- MetisMenu CSS -->
         <link href="css/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
@@ -123,51 +124,39 @@
                 </div>
                 <!-- /.row -->
 
-                <center>  
-                    <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
-                        <div class="panel-body">
-
-                            <div class="form-group col-lg-6">
-                                <input class="form-control" placeholder="Nombre" name="" type="text" value="">
-                            </div>
-
-                            <div class="form-group col-lg-6">
-                                <input class="form-control" placeholder="Apellido" name="" type="text" value="">
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <input class="form-control" placeholder="Identificación" name="" type="text" value="">
-                            </div>
-
-                            <div class="form-group col-lg-6">
-                                <input class="form-control" placeholder="Contraseña" name="" type="password" value="">
-                            </div>
-
-                            <div class="form-group col-lg-6">
-                                <input class="form-control" placeholder="Confirmar Contraseña" name="" type="password" value="">
-                            </div>
-
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="btn btn-default btn-block" type="submit" id="btnGuardar" name="action" value="Cancelar">
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="area">
+                        <table id="tblCuenta" class="table table-hover" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nombres</th>
+                                    <th class="text-center">Apellidos</th>
+                                    <th class="text-center">Identificacion</th>
+                                    <th class="text-center">Editar</th>
+                                    <th class="text-center">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>  
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </center>
+                </div>
+
+
             </div>
             <!-- /page-wrapper -->
         </div>
@@ -192,10 +181,22 @@
         <!-- Morris Charts JavaScript -->
         <script src="js/raphael-min.js" type="text/javascript"></script>
         <script src="js/morris.min.js" type="text/javascript"></script>
-        <script src="js/morris-data.js" type="text/javascript"></script>
 
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+
+        <!-- DateTable  JavaScript -->
+        <script src="bootstrap/js/dataTables.bootstrap.js" type="text/javascript"></script>
+        <script src="bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tblCuenta').dataTable({
+                    "oLanguage": {
+                        "sUrl": "bootstrap/js/Spanish.json"
+                    }
+                });
+            });
+        </script>
 
     </body>
 

@@ -62,7 +62,7 @@
                             <i class="fa fa-user"></i> Jean Mazo <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            
+
                             <li>
                                 <a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
                             </li>
@@ -77,17 +77,6 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="Cuentas.jsp"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios</a>
-                            </li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
-                            </li>
-
-                            <li>
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -98,6 +87,25 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                            </li>
+
+                            <li>
+                                <a class="active" href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a class="active" href="Cuentas.jsp">Registar Cuenta</a>
+                                    </li>
+                                    <li>
+                                        <a href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

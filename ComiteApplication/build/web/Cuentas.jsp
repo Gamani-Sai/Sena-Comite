@@ -77,18 +77,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a class="active" href="Cuentas.jsp"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios</a>
-                            </li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
-                            </li>
-
-                            <li>
-                                <a  href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="#">Registar queja</a>
@@ -98,6 +87,25 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                            </li>
+
+                            <li>
+                                <a class="active" href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a class="active" href="Cuentas.jsp">Registar Cuenta</a>
+                                    </li>
+                                    <li>
+                                        <a href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -109,28 +117,85 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Cuentas de Usuarios</h1>
+                        <h3 class="page-header">Cuentas de Usuarios</h3>
                     </div>
+                    <!-- /.col-lg-12 -->
                 </div>
+                <!-- /.row -->
+
+                <center>  
+                    <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
+                        <div class="panel-body">
+
+                            <div class="form-group col-lg-6">
+                                <input class="form-control" placeholder="Nombre" name="" type="text" value="">
+                            </div>
+
+                            <div class="form-group col-lg-6">
+                                <input class="form-control" placeholder="Apellido" name="" type="text" value="">
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <input class="form-control" placeholder="Identificación" name="" type="text" value="">
+                            </div>
+
+                            <div class="form-group col-lg-6">
+                                <input class="form-control" placeholder="Contraseña" name="" type="password" value="">
+                            </div>
+
+                            <div class="form-group col-lg-6">
+                                <input class="form-control" placeholder="Confirmar Contraseña" name="" type="password" value="">
+                            </div>
+
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="btn btn-default btn-block" type="submit" id="btnGuardar" name="action" value="Cancelar">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
             </div>
-            <!-- /#wrapper -->
+            <!-- /page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
-            <!-- jQuery -->
-            <script src="js/jquery.min.js" type="text/javascript"></script>
+        <footer>
+            <p>Posted by: Hege Refsnes</p>
+            <p>Contact information: <a href="mailto:someone@example.com">
+                    someone@example.com</a>.</p>
+        </footer>
 
-            <!-- Bootstrap Core JavaScript -->
-            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-            <!-- Metis Menu Plugin JavaScript -->
-            <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
 
-            <!-- Morris Charts JavaScript -->
-            <script src="js/raphael-min.js" type="text/javascript"></script>
-            <script src="js/morris.min.js" type="text/javascript"></script>
-            <script src="js/morris-data.js" type="text/javascript"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-            <!-- Custom Theme JavaScript -->
-            <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="js/raphael-min.js" type="text/javascript"></script>
+        <script src="js/morris.min.js" type="text/javascript"></script>
+        <script src="js/morris-data.js" type="text/javascript"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
     </body>
 
