@@ -20,6 +20,8 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- DateTable Core CSS --> 
         <link href="bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
 
         <!-- MetisMenu CSS -->
@@ -101,10 +103,10 @@
                                 <a class="active" href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a class="active" href="Cuentas.jsp">Registar Cuenta</a>
+                                        <a href="Cuentas.jsp">Registar Cuenta</a>
                                     </li>
                                     <li>
-                                        <a href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                        <a class="active" href="ConsultarCuentas.jsp">Consultar Cuenta</a>
                                     </li>
                                 </ul>
                             </li>
@@ -175,6 +177,10 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
+        <!-- DateTable  JavaScript -->
+        <script src="bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="bootstrap/js/dataTables.bootstrap.js" type="text/javascript"></script>
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
 
@@ -185,9 +191,7 @@
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
-        <!-- DateTable  JavaScript -->
-        <script src="bootstrap/js/dataTables.bootstrap.js" type="text/javascript"></script>
-        <script src="bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
         <script>
             $(document).ready(function () {
                 $('#tblCuenta').dataTable({
