@@ -1,187 +1,255 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Submit Handler Demo</title>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/formValidation.css" rel="stylesheet" type="text/css"/>
-
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/formValidation.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <!-- form: -->
-                <section>
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="page-header">
-                            <h2>Custom submit handler</h2>
-                        </div>
-
-                        <form id="defaultForm" method="post" class="form-horizontal" action="">
-                            <div class="alert alert-success" style="display: none;"></div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-
-                                    <div class="form-group col-lg-6">
-                                        <input class="form-control" placeholder="Nombre" name="username" type="text">
-                                    </div>
-
-                                    <div class="form-group col-lg-6">
-                                        <input class="form-control" placeholder="Apellido" name="Apellido" type="text" value="">
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <input class="form-control" placeholder="Identificación" name="phone" type="text" value="">
-                                    </div>
-
-                                    <div class="form-group col-lg-6">
-                                        <input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
-                                    </div>
-
-                                    <div class="form-group col-lg-6">
-                                        <input class="form-control" placeholder="Confirmar Contraseña" name="confirm_password" type="password" value="">
-                                    </div>
-                                </div>
-
-                                <div class="panel-footer">
-                                    <div class="row">
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="action" value="Cancelar">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-                <!-- :form -->
+<!DOCTYPE HTML>
+<!--
+/*
+ * jQuery File Upload Plugin Demo 9.1.0
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+-->
+<html lang="en">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<![endif]-->
+<meta charset="utf-8">
+<title>jQuery File Upload Demo</title>
+<meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads and client-side image resizing. Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap styles -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Generic page styles -->
+<link rel="stylesheet" href="css/style.css">
+<!-- blueimp Gallery styles -->
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="css/jquery.fileupload.css">
+<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+<!-- CSS adjustments for browsers with JavaScript disabled -->
+<noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
+<noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-fixed-top .navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://github.com/blueimp/jQuery-File-Upload">jQuery File Upload</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload/tags">Download</a></li>
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload">Source Code</a></li>
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload/wiki">Documentation</a></li>
+                <li><a href="https://blueimp.net">&copy; Sebastian Tschan</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h1>jQuery File Upload Demo</h1>
+    <h2 class="lead">Basic Plus UI version</h2>
+    <ul class="nav nav-tabs">
+        <li><a href="basic.html">Basic</a></li>
+        <li><a href="basic-plus.html">Basic Plus</a></li>
+        <li class="active"><a href="index.html">Basic Plus UI</a></li>
+        <li><a href="angularjs.html">AngularJS</a></li>
+        <li><a href="jquery-ui.html">jQuery UI</a></li>
+    </ul>
+    <br>
+    <blockquote>
+        <p>File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery.<br>
+        Supports cross-domain, chunked and resumable file uploads and client-side image resizing.<br>
+        Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.</p>
+    </blockquote>
+    <br>
+    <!-- The file upload form used as target for the file upload widget -->
+    <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#defaultForm')
-                        .formValidation({
-                            message: 'This value is not valid',
-                            //live: 'submitted',
-                            icon: {
-                                valid: 'glyphicon glyphicon-ok',
-                                invalid: 'glyphicon glyphicon-remove',
-                                validating: 'glyphicon glyphicon-refresh'
-                            },
-                            fields: {
-                                username: {
-                                    message: 'The username is not valid',
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The username is required and can\'t be empty'
-                                        },
-                                        stringLength: {
-                                            min: 6,
-                                            max: 30,
-                                            message: 'The username must be more than 6 and less than 30 characters long'
-                                        },
-                                        /*remote: {
-                                         url: 'remote.php',
-                                         message: 'The username is not available'
-                                         },*/
-                                        regexp: {
-                                            regexp: /^[a-zA-Z0-9_\.]+$/,
-                                            message: 'The username can only consist of alphabetical, number, dot and underscore'
-                                        }
-                                    }
-                                },
-                                Apellido: {
-                                    message: 'The username is not valid',
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The username is required and can\'t be empty'
-                                        },
-                                        stringLength: {
-                                            min: 6,
-                                            max: 30,
-                                            message: 'The username must be more than 6 and less than 30 characters long'
-                                        },
-                                        /*remote: {
-                                         url: 'remote.php',
-                                         message: 'The username is not available'
-                                         },*/
-                                        regexp: {
-                                            regexp: /^[a-zA-Z0-9_\.]+$/,
-                                            message: 'The username can only consist of alphabetical, number, dot and underscore'
-                                        }
-                                    }
-                                },
-                                phone: {
-                                    message: 'The phone number is not valid',
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The phone number is required'
-                                        },
-                                        digits: {
-                                            message: 'The value can contain only digits'
-                                        },
-                                        stringLength: {
-                                            min: 6,
-                                            max: 11,
-                                            message: 'The identificatión must be more than 6 and less than 11 characters long'
-                                        }
-                                    }
-                                },
-                                email: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The email address is required and can\'t be empty'
-                                        },
-                                        emailAddress: {
-                                            message: 'The input is not a valid email address'
-                                        }
-                                    }
-                                },
-                                password: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The password is required and can\'t be empty'
-                                        }
-                                    }
-                                },
-                                confirm_password: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: 'The confirm password is required and cannot be empty'
-                                        },
-                                        identical: {
-                                            field: 'password',
-                                            message: 'The password and its confirm must be the same'
-                                        }
-                                    }
-                                }
-                            }
-                        })
-                        .on('success.form.fv', function (e) {
-                            // Prevent submit form
-                            e.preventDefault();
-
-                            var $form = $(e.target),
-                                    validator = $form.data('formValidation');
-                            $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('username').val()).show();
-                        });
-            });
-        </script>
-    </body>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </form>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Demo Notes</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>The maximum file size for uploads in this demo is <strong>5 MB</strong> (default file size is unlimited).</li>
+                <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo (by default there is no file type restriction).</li>
+                <li>Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo setting).</li>
+                <li>You can <strong>drag &amp; drop</strong> files from your desktop on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>).</li>
+                <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information.</li>
+                <li>Built with the <a href="http://getbootstrap.com/">Bootstrap</a> CSS framework and Icons from <a href="http://glyphicons.com/">Glyphicons</a>.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- The blueimp Gallery widget -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">?</a>
+    <a class="next">?</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="js/jquery.fileupload-ui.js"></script>
+<!-- The main application script -->
+<script src="js/main.js"></script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+</body> 
 </html>

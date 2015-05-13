@@ -80,7 +80,7 @@
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Registar queja</a>
+                                        <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
                                         <a href="#">Consultar quejas</a>

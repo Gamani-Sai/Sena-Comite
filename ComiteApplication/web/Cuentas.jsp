@@ -83,7 +83,7 @@
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Registar queja</a>
+                                        <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
                                         <a href="#">Consultar quejas</a>
@@ -141,8 +141,12 @@
                                     <input class="form-control" placeholder="Apellido" name="Apellido" type="text" value="">
                                 </div>
 
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-6">
                                     <input class="form-control" placeholder="Identificación" name="Identificación" type="text" value="">
+                                </div>
+                                
+                                <div class="form-group col-lg-6">
+                                    <input class="form-control" placeholder="Tel o Cel" name="Telefono" type="text" value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
@@ -260,6 +264,22 @@
                                         stringLength: {
                                             min: 6,
                                             max: 11,
+                                            message: 'Minimo 6 y Maximo 11 caracteres'
+                                        }
+                                    }
+                                },
+                                Telefono: {
+                                    message: 'Identificación no valida',
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'Identificación requerida'
+                                        },
+                                        digits: {
+                                            message: 'Solo numeros'
+                                        },
+                                        stringLength: {
+                                            min: 7,
+                                            max: 10,
                                             message: 'Minimo 6 y Maximo 11 caracteres'
                                         }
                                     }

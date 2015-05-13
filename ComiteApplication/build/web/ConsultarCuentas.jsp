@@ -83,7 +83,7 @@
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">Registar queja</a>
+                                        <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
                                         <a href="#">Consultar quejas</a>
@@ -134,6 +134,7 @@
                                     <th class="text-center">Nombres</th>
                                     <th class="text-center">Apellidos</th>
                                     <th class="text-center">Identificacion</th>
+                                    <th class="text-center">Tel o Cel</th>
                                     <th class="text-center">Editar</th>
                                     <th class="text-center">Estado</th>
                                 </tr>
@@ -144,9 +145,11 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>  
                                 </tr>
                                 <tr>
+                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
