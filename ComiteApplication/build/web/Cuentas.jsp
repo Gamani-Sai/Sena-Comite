@@ -127,7 +127,7 @@
                 <!-- /.row -->
 
                 <center>  
-                    <form id="defaultForm">
+                    <form id="defaultForm" action="ConCuentas" method="POST">
                         <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
                             <div class="panel-body">
 
@@ -142,7 +142,7 @@
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <input class="form-control" placeholder="Identificación" name="Identificación" type="text" value="">
+                                    <input class="form-control" placeholder="Identificación" name="Identificacion" type="text" value="">
                                 </div>
                                 
                                 <div class="form-group col-lg-6">
@@ -150,7 +150,7 @@
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <input class="form-control" placeholder="Contraseña" name="Contraseña" type="Contraseña" value="">
+                                    <input class="form-control" placeholder="Contraseña" name="Contrasena" type="Contraseña" value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
@@ -162,14 +162,14 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="action" value="Cancelar">
+                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="evento" value="Cancelar">
 
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
+                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="evento" value="Guardar">
 
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                         }
                                     }
                                 },
-                                Identificación: {
+                                Identificacion: {
                                     message: 'Identificación no valida',
                                     validators: {
                                         notEmpty: {
@@ -284,7 +284,7 @@
                                         }
                                     }
                                 },
-                                Contraseña: {
+                                Contrasena: {
                                     validators: {
                                         notEmpty: {
                                             message: 'Contraseña requerida'

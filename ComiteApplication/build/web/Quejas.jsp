@@ -43,6 +43,11 @@
         <link href="css/select/select2.css" rel="stylesheet" type="text/css"/>
         <link href="css/select/select2-bootstrap.css" rel="stylesheet" type="text/css"/>
 
+        <!-- File Uploader Core CSS -->
+        <link href="css/fileinput/fileinput.min.css" rel="stylesheet" type="text/css"/>
+
+
+
     </head>
 
     <body>
@@ -84,6 +89,9 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                            </li>
+                            <li>
                                 <a  class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -100,7 +108,7 @@
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                                <a href="Citacion.jsp"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
@@ -172,7 +180,7 @@
                                                             </span>
 
                                                             <select id="select2" class="form-control" name="Especialidad">
-                                                                <option value="">Especialidad</option>
+                                                                <option value="">Programa</option>
                                                                 <option value="fr">1</option>
                                                                 <option value="de">2</option>
                                                                 <option value="it">3</option>
@@ -208,7 +216,7 @@
 
                                                 <div class="form-group">
                                                     <div class="col-lg-12">
-                                                        <textarea class="form-control" name="Descrición" rows="5" placeholder="Descrición de tallada de los hechos que presuntamente constituyen la falta"></textarea>
+                                                        <textarea class="form-control" name="Descrición" rows="5" placeholder="Descripción de tallada de los hechos que presuntamente constituyen la falta"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,7 +233,7 @@
 
                                                 <div class="form-group">
                                                     <div class="col-lg-12">
-                                                        <input type="file" class="form-control" name="fourthFile" />
+                                                        <input id="file-es" name="fourthFile1" type="file" multiple>
                                                     </div>
                                                 </div>
                                             </div>
@@ -286,6 +294,20 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+
+        <!-- FileUploader JavaScript -->
+        <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
+        <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
+        
+        <script>
+
+        $('#file-es').fileinput({
+            language: 'es',
+            uploadUrl: '#',
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+        });
+
+    </script>
 
         <!-- Select2 JavaScript -->
         <script src="css/select/select2.min.js" type="text/javascript"></script>

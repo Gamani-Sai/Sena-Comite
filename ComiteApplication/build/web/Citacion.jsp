@@ -21,6 +21,9 @@
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
+        <!-- DateTable Core CSS --> 
+        <link href="bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
+
         <!-- MetisMenu CSS -->
         <link href="css/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
 
@@ -86,27 +89,27 @@
                                         <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
-                                        <a href="#">Consultar quejas</a>
+                                        <a href="ConsultarQueja.jsp">Consultar quejas</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a class="active"  href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
+                                <a  href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="Cuentas.jsp">Registar Cuenta</a>
                                     </li>
                                     <li>
-                                        <a href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                        <a  href="ConsultarCuentas.jsp">Consultar Cuenta</a>
                                     </li>
                                 </ul>
                             </li>
@@ -120,31 +123,87 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dashboard</h1>
+                        <h3 class="page-header">Citación del aprendiz</h3>
                     </div>
                     <!-- /.col-lg-12 -->
-
                 </div>
-                <!-- /#page-wrapper -->
+                <!-- /.row -->
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="area">
+                        <table id="tblCuenta" class="table table-hover" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Nombres</th>
+                                    <th class="text-center">Apellidos</th>
+                                    <th class="text-center">Identificacion</th>
+                                    <th class="text-center">N° De Ficha</th>
+                                    <th class="text-center">Generar Citación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
 
             </div>
-            <!-- /#wrapper -->
+            <!-- /page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
-            <!-- jQuery -->
-            <script src="js/jquery.min.js" type="text/javascript"></script>
+        <footer>
+            <p>Posted by: Hege Refsnes</p>
+            <p>Contact information: <a href="mailto:someone@example.com">
+                    someone@example.com</a>.</p>
+        </footer>
 
-            <!-- Bootstrap Core JavaScript -->
-            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-            <!-- Metis Menu Plugin JavaScript -->
-            <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
 
-            <!-- Morris Charts JavaScript -->
-            <script src="js/raphael-min.js" type="text/javascript"></script>
-            <script src="js/morris.min.js" type="text/javascript"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-            <!-- Custom Theme JavaScript -->
-            <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <!-- DateTable  JavaScript -->
+        <script src="bootstrap/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="bootstrap/js/dataTables.bootstrap.js" type="text/javascript"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="js/raphael-min.js" type="text/javascript"></script>
+        <script src="js/morris.min.js" type="text/javascript"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="js/sb-admin-2.js" type="text/javascript"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                $('#tblCuenta').dataTable({
+                    "oLanguage": {
+                        "sUrl": "bootstrap/js/Spanish.json"
+                    }
+                });
+            });
+        </script>
 
     </body>
 

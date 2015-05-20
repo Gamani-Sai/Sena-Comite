@@ -46,7 +46,8 @@
         <!-- File Uploader Core CSS -->
         <link href="css/fileinput/fileinput.min.css" rel="stylesheet" type="text/css"/>
 
-
+        <!-- datetimepicker Core CSS -->
+        <link href="css/datetimepicker/datepicker.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -89,10 +90,10 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a class="active" href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
                             </li>
                             <li>
-                                <a  class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a class="active" href="Quejas.jsp">Registar queja</a>
@@ -132,138 +133,62 @@
             <div class="container" id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header">Recepción de quejas</h3>
+                        <h3 class="page-header">Fechas para comite</h3>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
 
-                <center>  
-                    <form id="defaultForm">
-                        <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
-                            <div class="panel-body">
+                <form id="eventForm" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Event</label>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" name="name" />
+                        </div>
+                    </div>
 
-                                <div class="panel-group" id="steps">
-                                    <!-- Step 1 -->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepOne">Información del aprendiz</a></h4>
-                                        </div>
-                                        <div id="stepOne" class="panel-collapse collapse in">
-                                            <div class="panel-body">
-
-                                                <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="Nombre" name="Nombre" type="text">
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="Apellido" name="Apellido" type="text" value="">
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="Identificación" name="Identificación" type="text" value="">
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="N° De Ficha" name="Ficha" type="text" value="">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-lg-12">
-
-                                                        <div class="input-group select2-bootstrap-prepend">
-
-                                                            <span class="input-group-btn">
-                                                                <button class="btn btn-default" type="button" data-select2-open="single-prepend-text">
-                                                                    <span class="glyphicon glyphicon-search"></span>
-                                                                </button>
-                                                            </span>
-
-                                                            <select id="select2" class="form-control" name="Especialidad">
-                                                                <option value="">Programa</option>
-                                                                <option value="fr">1</option>
-                                                                <option value="de">2</option>
-                                                                <option value="it">3</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 2 -->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepTwo">Detalle de la queja</a></h4>
-                                        </div>
-                                        <div id="stepTwo" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <div class="form-group">
-                                                    <div class="col-lg-12">
-                                                        <select class="form-control" name="TipoQueja">
-                                                            <option value="">Tipo de queja</option>
-                                                            <option value="fr">1</option>
-                                                            <option value="de">2</option>
-                                                            <option value="it">3</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <br>
-                                                <br>
-
-                                                <div class="form-group">
-                                                    <div class="col-lg-12">
-                                                        <textarea class="form-control" name="Descrición" rows="5" placeholder="Descripción de tallada de los hechos que presuntamente constituyen la falta"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 3 -->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepThree">Evidencia</a></h4>
-                                        </div>
-                                        <div id="stepThree" class="panel-collapse collapse">
-                                            <div class="panel-body">
-
-                                                <div class="form-group">
-                                                    <div class="col-lg-12">
-                                                        <input id="file-es" name="fourthFile1" type="file" multiple>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="panel-footer">
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="action" value="Cancelar">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
-
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Start date</label>
+                        <div class="col-xs-5 dateContainer">
+                            <div class="input-group input-append date" id="startDatePicker">
+                                <input type="text" class="form-control" name="startDate" />
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
-                    </form>
-                </center>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">End date</label>
+                        <div class="col-xs-5 dateContainer">
+                            <div class="input-group input-append date" id="endDatePicker">
+                                <input type="text" class="form-control" name="endDate" />
+                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <button type="submit" class="btn btn-default">Validate</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
+
+            <style type="text/css">
+                /**
+                 * Override feedback icon position
+                 * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
+                 */
+                #eventForm .dateContainer .form-control-feedback {
+                    top: 0;
+                    right: -15px;
+                }
+            </style>
+
+
+
             <!-- /page-wrapper -->
         </div>
         <!-- /#wrapper -->
@@ -295,19 +220,92 @@
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
+        <!-- datetimepicker JavaScript -->
+        <script src="css/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#startDatePicker').datepicker({
+                    format: 'mm/dd/yyyy'
+                }).on('changeDate', function (e) {
+                    // Revalidate the start date field
+                    $('#eventForm').formValidation('revalidateField', 'startDate');
+                });
+
+                $('#endDatePicker').datepicker({
+                    format: 'mm/dd/yyyy'
+                }).on('changeDate', function (e) {
+                    $('#eventForm').formValidation('revalidateField', 'endDate');
+                });
+
+                $('#eventForm').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        name: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The name is required'
+                                }
+                            }
+                        },
+                        startDate: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The start date is required'
+                                },
+                                date: {
+                                    format: 'MM/DD/YYYY',
+                                    max: 'endDate',
+                                    message: 'The start date is not a valid'
+                                }
+                            }
+                        },
+                        endDate: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The end date is required'
+                                },
+                                date: {
+                                    format: 'MM/DD/YYYY',
+                                    min: 'startDate',
+                                    message: 'The end date is not a valid'
+                                }
+                            }
+                        }
+                    }
+                })
+                        .on('success.field.fv', function (e, data) {
+                            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                                // We need to revalidate the end date
+                                data.fv.revalidateField('endDate');
+                            }
+
+                            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                                // We need to revalidate the start date
+                                data.fv.revalidateField('startDate');
+                            }
+                        });
+            });
+        </script>
+
         <!-- FileUploader JavaScript -->
         <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
         <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
-        
+
         <script>
 
-        $('#file-es').fileinput({
-            language: 'es',
-            uploadUrl: '#',
-            allowedFileExtensions: ['jpg', 'png', 'gif'],
-        });
+            $('#file-es').fileinput({
+                language: 'es',
+                uploadUrl: '#',
+                allowedFileExtensions: ['jpg', 'png', 'gif'],
+            });
 
-    </script>
+        </script>
 
         <!-- Select2 JavaScript -->
         <script src="css/select/select2.min.js" type="text/javascript"></script>

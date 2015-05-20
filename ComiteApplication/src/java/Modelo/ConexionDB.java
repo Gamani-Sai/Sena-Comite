@@ -26,7 +26,7 @@ public class ConexionDB {
         try {
             Class.forName("oracle.jdbc.OracleDriver");
 
-            conector = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "PRUEBA", "system");
+            conector = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "COMITE_DB", "system");
 
         } catch (ClassNotFoundException CNFE) {
             //SQLException

@@ -80,6 +80,9 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
+                                <a href="#"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                            </li>
+                            <li>
                                 <a  class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
@@ -93,7 +96,7 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
@@ -134,7 +137,10 @@
                                     <th class="text-center">Nombres</th>
                                     <th class="text-center">Apellidos</th>
                                     <th class="text-center">Identificacion</th>
-                                    <th class="text-center">Tel o Cel</th>
+                                    <th class="text-center">N° De Ficha</th>
+                                    <th class="text-center">Programa</th>
+                                    <th class="text-center">TipoQueja</th>
+                                    <th class="text-center">Descripción</th>
                                     <th class="text-center">Editar</th>
                                     <th class="text-center">Estado</th>
                                 </tr>
@@ -146,9 +152,15 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td>&nbsp;</td>  
+                                    <td>&nbsp;</td> 
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
                                 </tr>
                                 <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>

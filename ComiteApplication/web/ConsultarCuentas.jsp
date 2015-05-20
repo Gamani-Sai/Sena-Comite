@@ -4,6 +4,7 @@
     Author     : gestion
 --%>
 
+<%@page import="Controlador.ConCuentas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,31 +132,18 @@
                         <table id="tblCuenta" class="table table-hover" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Nombres</th>
+                                    <th class="text-center">Nombres</th> 
                                     <th class="text-center">Apellidos</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Tel o Cel</th>
                                     <th class="text-center">Editar</th>
-                                    <th class="text-center">Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>  
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
+                                <%
+                                    ConCuentas list_Cuenta = new ConCuentas();
+                                    out.println(list_Cuenta.listar());
+                                %>
                             </tbody>
                         </table>
                     </div>
