@@ -5,23 +5,23 @@
  */
 package Controlador;
 
-import Entidad.EntCuentas;
-import Modelo.Cuentas;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Entidad.EntQueja;
+import Modelo.Quejas;
+import java.sql.ResultSet;
 
 /**
  *
  * @author gestion
  */
-@WebServlet(name = "ConCuentas", urlPatterns = {"/ConCuentas"})
-public class ConCuentas extends HttpServlet {
+@WebServlet(name = "ConQueja", urlPatterns = {"/ConQueja"})
+public class ConQueja extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,26 +32,28 @@ public class ConCuentas extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    EntCuentas datosCuentas = new EntCuentas();
-    Cuentas Cuen = new Cuentas();
+    EntQueja DatosQueja = new EntQueja();
+    Quejas Que = new Quejas();
 
     //Procedimiento que lista los datos
     public String listar() {
 
         String tbl = "";
         ResultSet Result = null;
-        String colorEstado = "";
-        String iconoEstado = "";
-        String nomFuncion = "";
+
         try {
-            Result = Cuen.ConsulCuentas();
+            Result = Que.ConsulQuejas();
             while (Result.next()) {
                 tbl += "<tr>";
                 tbl += "<td><center>" + Result.getString("NOMBRE").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("APELLIDO").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("TEL_CEL").toString().trim() + "</center></td>";
-                tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.Cuenta(" + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + '\"' + "," + '\"' + Result.getString("TEL_CEL").toString().trim() + '\"' + ")' ></button></center></td>";
+                tbl += "<td><center>" + Result.getString("N_Ficha").toString().trim() + "</center></td>";
+                tbl += "<td Style='display:none'><center>" + Result.getString("Tipo_Queja").toString().trim() + "</center></td>";
+                tbl += "<td Style='display:none'><center>" + Result.getString("Descripcion").toString().trim() + "</center></td>";
+                tbl += "<td Style='display:none'><center>" + Result.getString("Especialidad").toString().trim() + "</center></td>";
+                tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.infoAprendriz(" + '\"' + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + "," + '\"' + Result.getString("N_Ficha").toString().trim() + '\"' + "," + '\"' + Result.getString("Especialidad").toString().trim() + '\"' + ")' ></button></center></td>";
+                tbl += "<td><center><button  class='btn btn-success fa fa-plus-circle' data-toggle='modal' data-target='#myModal1' onclick='mapear.infoQueja(" + '\"' + Result.getString("Tipo_Queja").toString().trim() + '\"' + "," + '\"' + Result.getString("Descripcion").toString().trim() + '\"' + ")' ></button></center></td>";
                 tbl += "</tr>";
             }
         } catch (Exception ex) {
@@ -68,25 +70,31 @@ public class ConCuentas extends HttpServlet {
             String Evento = request.getParameter("evento");
 
             if (Evento != null) {
-                //Se ingresan los datos
+
                 if (Evento.equals("Guardar")) {
                     String Nombre = request.getParameter("Nombre");
                     String Apellido = request.getParameter("Apellido");
                     String Identificación = request.getParameter("Identificacion");
-                    String Tel_Cel = request.getParameter("Telefono");
-                    String Contraseña = request.getParameter("Contrasena");
-                    String Estado = "Habilitado";
+                    String N_Ficha = request.getParameter("N_Ficha");
+                    String Tipo_Queja = request.getParameter("TipoQueja");
+                    String Descripcion = request.getParameter("Descricion");
+                    String Especialidad = request.getParameter("Especialidad");
+                    String Evidencia = request.getParameter("fourthFile1");
 
-                    datosCuentas.setNombre(Nombre);
-                    datosCuentas.setApellido(Apellido);
-                    datosCuentas.setIdentificación(Identificación);
-                    datosCuentas.setTel_Cel(Tel_Cel);
-                    datosCuentas.setContraseña(Contraseña);
-                    datosCuentas.setEstado(Estado);
+                    DatosQueja.setNombre(Nombre);
+                    DatosQueja.setApellido(Apellido);
+                    DatosQueja.setIdentificación(Identificación);
+                    DatosQueja.setN_Ficha(N_Ficha);
+                    DatosQueja.setTipo_Queja(Tipo_Queja);
+                    DatosQueja.setDescripcion(Descripcion);
+                    DatosQueja.setEspecialidad(Especialidad);
+                    DatosQueja.setEvidencia(Evidencia);
 
-                    Cuen.InsertCuentas(datosCuentas);
+                    Que.InsertQueja(DatosQueja);
+
                 }
             }
+
         }
     }
 

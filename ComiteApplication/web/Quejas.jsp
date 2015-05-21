@@ -139,12 +139,13 @@
                 <!-- /.row -->
 
                 <center>  
-                    <form id="defaultForm">
+                    <form id="defaultForm" action="ConQueja" method="POST">
                         <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
                             <div class="panel-body">
 
                                 <div class="panel-group" id="steps">
                                     <!-- Step 1 -->
+
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepOne">Información del aprendiz</a></h4>
@@ -161,11 +162,11 @@
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="Identificación" name="Identificación" type="text" value="">
+                                                    <input class="form-control" placeholder="Identificación" name="Identificacion" type="text" value="">
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <input class="form-control" placeholder="N° De Ficha" name="Ficha" type="text" value="">
+                                                    <input class="form-control" placeholder="N° De Ficha" name="N_Ficha" type="text" value="">
                                                 </div>
 
                                                 <div class="form-group">
@@ -204,9 +205,8 @@
                                                     <div class="col-lg-12">
                                                         <select class="form-control" name="TipoQueja">
                                                             <option value="">Tipo de queja</option>
-                                                            <option value="fr">1</option>
-                                                            <option value="de">2</option>
-                                                            <option value="it">3</option>
+                                                            <option value="Academica">Academica</option>
+                                                            <option value="Disiplinaria">Disiplinaria</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@
 
                                                 <div class="form-group">
                                                     <div class="col-lg-12">
-                                                        <textarea class="form-control" name="Descrición" rows="5" placeholder="Descripción de tallada de los hechos que presuntamente constituyen la falta"></textarea>
+                                                        <textarea class="form-control" name="Descricion" rows="5" placeholder="Descripción de tallada de los hechos que presuntamente constituyen la falta"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,14 +247,14 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="action" value="Cancelar">
+                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="evento" value="Cancelar">
 
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="action" value="Guardar">
+                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="evento" value="Guardar">
 
                                         </div>
                                     </div>
@@ -298,16 +298,16 @@
         <!-- FileUploader JavaScript -->
         <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
         <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
-        
+
         <script>
 
-        $('#file-es').fileinput({
-            language: 'es',
-            uploadUrl: '#',
-            allowedFileExtensions: ['jpg', 'png', 'gif'],
-        });
+            $('#file-es').fileinput({
+                language: 'es',
+                uploadUrl: '#',
+                allowedFileExtensions: ['jpg', 'png', 'gif'],
+            });
 
-    </script>
+        </script>
 
         <!-- Select2 JavaScript -->
         <script src="css/select/select2.min.js" type="text/javascript"></script>
@@ -315,7 +315,8 @@
         <script>
             $(document).ready(function () {
                 $("#select2").select2();
-            });</script>
+            });
+        </script>
 
 
         <!-- Script Validación -->
@@ -367,7 +368,7 @@
                                 }
                             }
                         },
-                        Identificación: {
+                        Identificacion: {
                             message: 'Identificación no valida',
                             validators: {
                                 notEmpty: {
@@ -383,7 +384,7 @@
                                 }
                             }
                         },
-                        Ficha: {
+                        N_Ficha: {
                             message: 'Ficha no valida',
                             validators: {
                                 notEmpty: {
@@ -413,7 +414,7 @@
                                 }
                             }
                         },
-                        Descrición: {
+                        Descricion: {
                             validators: {
                                 stringLength: {
                                     enabled: false,
