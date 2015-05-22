@@ -45,6 +45,7 @@ public class ConQueja extends HttpServlet {
             Result = Que.ConsulQuejas();
             while (Result.next()) {
                 tbl += "<tr>";
+                tbl += "<td Style='display:none'><center>" + Result.getString("ID_QUEJA").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("NOMBRE").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("APELLIDO").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
@@ -52,8 +53,8 @@ public class ConQueja extends HttpServlet {
                 tbl += "<td Style='display:none'><center>" + Result.getString("Tipo_Queja").toString().trim() + "</center></td>";
                 tbl += "<td Style='display:none'><center>" + Result.getString("Descripcion").toString().trim() + "</center></td>";
                 tbl += "<td Style='display:none'><center>" + Result.getString("Especialidad").toString().trim() + "</center></td>";
-                tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.infoAprendriz(" + '\"' + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + "," + '\"' + Result.getString("N_Ficha").toString().trim() + '\"' + "," + '\"' + Result.getString("Especialidad").toString().trim() + '\"' + ")' ></button></center></td>";
-                tbl += "<td><center><button  class='btn btn-success fa fa-plus-circle' data-toggle='modal' data-target='#myModal1' onclick='mapear.infoQueja(" + '\"' + Result.getString("Tipo_Queja").toString().trim() + '\"' + "," + '\"' + Result.getString("Descripcion").toString().trim() + '\"' + ")' ></button></center></td>";
+                tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.infoAprendriz(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + "," + '\"' + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + "," + '\"' + Result.getString("N_Ficha").toString().trim() + '\"' + "," + '\"' + Result.getString("Especialidad").toString().trim() + '\"' + ")' ></button></center></td>";
+                tbl += "<td><center><button  class='btn btn-success fa fa-plus-circle' data-toggle='modal' data-target='#myModal1' onclick='mapear.infoQueja(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + "," + '\"' + Result.getString("Tipo_Queja").toString().trim() + '\"' + "," + '\"' + Result.getString("Descripcion").toString().trim() + '\"' + ")' ></button></center></td>";
                 tbl += "</tr>";
             }
         } catch (Exception ex) {
@@ -65,6 +66,7 @@ public class ConQueja extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String alert = "";
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String Evento = request.getParameter("evento");
@@ -79,7 +81,7 @@ public class ConQueja extends HttpServlet {
                     String Tipo_Queja = request.getParameter("TipoQueja");
                     String Descripcion = request.getParameter("Descricion");
                     String Especialidad = request.getParameter("Especialidad");
-                    String Evidencia = request.getParameter("fourthFile1");
+                    //String Evidencia = request.getParameter("fourthFile1");
 
                     DatosQueja.setNombre(Nombre);
                     DatosQueja.setApellido(Apellido);
@@ -88,10 +90,133 @@ public class ConQueja extends HttpServlet {
                     DatosQueja.setTipo_Queja(Tipo_Queja);
                     DatosQueja.setDescripcion(Descripcion);
                     DatosQueja.setEspecialidad(Especialidad);
-                    DatosQueja.setEvidencia(Evidencia);
+                    //DatosQueja.setEvidencia(Evidencia);
 
-                    Que.InsertQueja(DatosQueja);
+                    //Que.InsertQueja(DatosQueja);
+                    if (Que.InsertQueja(DatosQueja)) {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
+                                + "            title: 'Registro de queja',\n"
+                                + "            message: 'Registro exitoso',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: false,\n"
+                                + "            closeByKeyboard: false,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-success',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
 
+                        getServletConfig().getServletContext().getRequestDispatcher("/Quejas.jsp").forward(request, response);
+                    } else {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_DANGER,\n"
+                                + "            title: 'Registro de queja',\n"
+                                + "            message: 'No se pudo registrar',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: false,\n"
+                                + "            closeByKeyboard: false,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-DANGER',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/Quejas.jsp").forward(request, response);
+                    }
+
+                }
+
+                if (Evento.equals("modInfoAprendiz")) {
+                    String Id_Queja = request.getParameter("Id_Queja");
+                    String Nombre = request.getParameter("Nombre");
+                    String Apellido = request.getParameter("Apellido");
+                    String Identificación = request.getParameter("Identificacion");
+                    String N_Ficha = request.getParameter("N_Ficha");
+                    String Especialidad = request.getParameter("Especialidad");
+
+                    DatosQueja.setId_Queja(Integer.parseInt(Id_Queja));
+                    DatosQueja.setNombre(Nombre);
+                    DatosQueja.setApellido(Apellido);
+                    DatosQueja.setIdentificación(Identificación);
+                    DatosQueja.setN_Ficha(N_Ficha);
+                    DatosQueja.setEspecialidad(Especialidad);
+
+                    //Que.modificarInfoAprendiz(DatosQueja);
+                    if (Que.modificarInfoAprendiz(DatosQueja)) {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
+                                + "            title: 'Información del aprendiz',\n"
+                                + "            message: 'Modificación Exitosa',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: false,\n"
+                                + "            closeByKeyboard: false,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-success',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarQueja.jsp").forward(request, response);
+
+                    }
+                }
+
+                if (Evento.equals("modInfoQueja")) {
+                    String Id_QuejaMod = request.getParameter("Id_QuejaMod");
+                    String Tipo_Queja = request.getParameter("TipoQueja");
+                    String Descripcion = request.getParameter("Descricion");
+
+                    DatosQueja.setId_Queja(Integer.parseInt(Id_QuejaMod));
+                    DatosQueja.setTipo_Queja(Tipo_Queja);
+                    DatosQueja.setDescripcion(Descripcion);
+
+                    //Que.modificarInfoQueja(DatosQueja);
+                    if (Que.modificarInfoQueja(DatosQueja)) {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
+                                + "            title: 'Información de la queja',\n"
+                                + "            message: 'Modificación Exitosa',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: false,\n"
+                                + "            closeByKeyboard: false,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-success',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarQueja.jsp").forward(request, response);
+
+                    }
                 }
             }
 

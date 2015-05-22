@@ -24,7 +24,7 @@ public class Quejas extends ConexionDB {
         conectarse();
         boolean retornarObj = false;
 
-        String insertQueja = "insert into Quejas (Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad,Evidencia) values (?,?,?,?,?,?,?,?)";
+        String insertQueja = "insert into Quejas (Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad) values (?,?,?,?,?,?,?)";
         try {
             Stmp();
             statement = conector.prepareStatement(insertQueja);
@@ -35,7 +35,7 @@ public class Quejas extends ConexionDB {
             statement.setString(5, DatosQueja.getTipo_Queja());
             statement.setString(6, DatosQueja.getDescripcion());
             statement.setString(7, DatosQueja.getEspecialidad());
-            statement.setString(8, DatosQueja.getEvidencia());
+            //statement.setString(8, DatosQueja.getEvidencia());
 
             int cont = statement.executeUpdate();
             if (cont > 0) {
@@ -53,7 +53,7 @@ public class Quejas extends ConexionDB {
         ResultSet result = null;
         conectarse();
 
-        String consulQuejas = "SELECT Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad FROM Quejas";
+        String consulQuejas = "SELECT ID_QUEJA,Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad FROM Quejas order by Nombre";
         try {
             consulta = conector.createStatement();
             result = consulta.executeQuery(consulQuejas);
@@ -62,6 +62,55 @@ public class Quejas extends ConexionDB {
         }
 
         return result;
+    }
+
+    //Procedimiento para Modificar la información del aprendiz
+    public boolean modificarInfoAprendiz(EntQueja datosQueja) {
+        conectarse();
+        boolean retornarObj = false;
+
+        String modInfoAprendiz = "update quejas set  NOMBRE = ?,APELLIDO = ?, IDENTIFICACIÓN = ?, N_FICHA = ?, ESPECIALIDAD = ? where ID_QUEJA =  ?";
+        try {
+            Stmp();
+            statement = conector.prepareStatement(modInfoAprendiz);
+            statement.setString(1, datosQueja.getNombre());
+            statement.setString(2, datosQueja.getApellido());
+            statement.setString(3, datosQueja.getIdentificación());
+            statement.setString(4, datosQueja.getN_Ficha());
+            statement.setString(5, datosQueja.getEspecialidad());
+            statement.setInt(6, datosQueja.getId_Queja());
+
+            int cont = statement.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return retornarObj;
+    }
+
+    //Procedimiento para Modificar la información de la queja
+    public boolean modificarInfoQueja(EntQueja datosQueja) {
+        conectarse();
+        boolean retornarObj = false;
+
+        String modInfoQueja = "update quejas set  TIPO_QUEJA = ?,DESCRIPCION = ? where ID_QUEJA =  ?";
+        try {
+            Stmp();
+            statement = conector.prepareStatement(modInfoQueja);
+            statement.setString(1, datosQueja.getTipo_Queja());
+            statement.setString(2, datosQueja.getDescripcion());
+            statement.setInt(3, datosQueja.getId_Queja());
+
+            int cont = statement.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return retornarObj;
     }
 
 }

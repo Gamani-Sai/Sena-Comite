@@ -4,6 +4,7 @@
     Author     : gestion
 --%>
 
+<%@page import="Controlador.Citacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,28 +135,22 @@
                         <table id="tblCuenta" class="table table-hover" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th class="text-center" Style="display:none"></th>
                                     <th class="text-center">Nombres</th>
                                     <th class="text-center">Apellidos</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">N° De Ficha</th>
+                                    <th class="text-center" Style="display:none"></th>
+                                    <th class="text-center" Style="display:none"></th>
+                                    <th class="text-center" Style="display:none"></th>
                                     <th class="text-center">Generar Citación</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
+                                <%
+                                    Citacion listQueja = new Citacion();
+                                    out.print(listQueja.listar());
+                                %>
                             </tbody>
                         </table>
                     </div>

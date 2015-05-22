@@ -5,8 +5,9 @@
  */
 
 var mapear = {
-    infoAprendriz: function (Nombre, Apellido, Identificacion, N_Ficha, Especialidad)
+    infoAprendriz: function (Id_Queja, Nombre, Apellido, Identificacion, N_Ficha, Especialidad)
     {
+        $("#Id_Queja").val(Id_Queja);
         $("#Nombre").val(Nombre);
         $("#Identificacion").val(Identificacion);
         $("#Apellido").val(Apellido);
@@ -14,8 +15,9 @@ var mapear = {
         $("#Especialidad").val(Especialidad);
 
     },
-    infoQueja: function (TipoQueja, Descricion)
+    infoQueja: function (Id_QuejaMod, TipoQueja, Descricion)
     {
+        $("#Id_QuejaMod").val(Id_QuejaMod);
         $("#TipoQueja").val(TipoQueja);
         $("#Descricion").val(Descricion);
     }
