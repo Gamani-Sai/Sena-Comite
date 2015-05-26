@@ -20,6 +20,13 @@ var mapear = {
         $("#Id_QuejaMod").val(Id_QuejaMod);
         $("#TipoQueja").val(TipoQueja);
         $("#Descricion").val(Descricion);
+    },
+    Cuentas: function (Id_Cuenta, Nombrecompleto, CORREO,TEL_CEL)
+    {
+        $("#Id_Cuenta").val(Id_Cuenta);
+        $("#Nombre").val(Nombrecompleto);
+        $("#Correo").val(CORREO);
+        $("#Telefono").val(TEL_CEL);
     }
 
 };

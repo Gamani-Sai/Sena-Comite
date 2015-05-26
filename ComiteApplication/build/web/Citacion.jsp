@@ -4,7 +4,7 @@
     Author     : gestion
 --%>
 
-<%@page import="Controlador.Citacion"%>
+<%@page import="Controlador.ConCitacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,7 +148,7 @@
                             </thead>
                             <tbody>
                                 <%
-                                    Citacion listQueja = new Citacion();
+                                    ConCitacion listQueja = new ConCitacion();
                                     out.print(listQueja.listar());
                                 %>
                             </tbody>

@@ -17,7 +17,8 @@ public class EntCuentas {
     private String Identificación = "";
     private String Tel_Cel = "";
     private String Contraseña = "";
-    private String Estado="";
+    private String Estado = "";
+    private String Correo = "";
 
     /**
      * @return the Id_Cuenta
@@ -115,5 +116,23 @@ public class EntCuentas {
      */
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+
+    /**
+     * @return the Correo
+     */
+    public String getCorreo() {
+        return Correo;
+    }
+
+    /**
+     * @param Correo the Correo to set
+     */
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public void setId_Cuenta(String Id_Cuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

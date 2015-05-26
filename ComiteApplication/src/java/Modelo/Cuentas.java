@@ -23,7 +23,7 @@ public class Cuentas extends ConexionDB {
     public boolean InsertCuentas(EntCuentas Datoscuenta) {
         conectarse();
         boolean retornarObj = false;
-        String insertCuenta = "insert into Cuenta_Usuario (Nombre,Apellido,Identificación,Tel_Cel,Contraseña,Estado) values (?,?,?,?,?,?)";
+        String insertCuenta = "insert into Cuenta_Usuario (Nombre,Apellido,Identificación,Tel_Cel,Contraseña,Estado,Correo) values (?,?,?,?,?,?,?)";
         try {
             Stmp();
             statemen = conector.prepareStatement(insertCuenta);
@@ -33,6 +33,7 @@ public class Cuentas extends ConexionDB {
             statemen.setString(4, Datoscuenta.getTel_Cel());
             statemen.setString(5, Datoscuenta.getContraseña());
             statemen.setString(6, Datoscuenta.getEstado());
+            statemen.setString(7, Datoscuenta.getCorreo());
 
             int cont = statemen.executeUpdate();
             if (cont > 0) {
@@ -50,7 +51,7 @@ public class Cuentas extends ConexionDB {
         ResultSet result = null;
         conectarse();
 
-        String consulCuenta = "SELECT NOMBRE,APELLIDO,IDENTIFICACIÓN,TEL_CEL FROM CUENTA_USUARIO";
+        String consulCuenta = "SELECT Id_Cuenta, (Nombre || ' ' || Apellido) AS Nombrecompleto ,NOMBRE,APELLIDO,IDENTIFICACIÓN,TEL_CEL,CORREO FROM CUENTA_USUARIO";
         try {
             consulta = conector.createStatement();
             result = consulta.executeQuery(consulCuenta);
@@ -60,4 +61,28 @@ public class Cuentas extends ConexionDB {
 
         return result;
     }
+
+    public boolean modificarInfoCuenta(EntCuentas datosQueja) {
+        conectarse();
+        boolean retornarObj = false;
+
+        String modInfoCuenta = "update CUENTA_USUARIO set  Correo = ?, Contraseña = ?, Tel_Cel = ? where Id_Cuenta =  ?";
+        try {
+            Stmp();
+            statemen = conector.prepareStatement(modInfoCuenta);
+            statemen.setString(1, datosQueja.getCorreo());
+            statemen.setString(2, datosQueja.getContraseña());
+            statemen.setString(3, datosQueja.getTel_Cel());
+            statemen.setInt(4, datosQueja.getId_Cuenta());
+
+            int cont = statemen.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return retornarObj;
+    }
+
 }

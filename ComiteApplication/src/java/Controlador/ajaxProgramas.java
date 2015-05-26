@@ -5,11 +5,14 @@
  */
 package Controlador;
 
-import Entidad.EntQueja;
-import Modelo.Quejas;
+import Entidad.EntProgramas;
+import Modelo.Programas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gestion
  */
-@WebServlet(name = "Citacion", urlPatterns = {"/Citacion"})
-public class Citacion extends HttpServlet {
+@WebServlet(name = "ajaxProgramas", urlPatterns = {"/ajaxProgramas"})
+public class ajaxProgramas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,42 +35,30 @@ public class Citacion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    EntQueja DatosQueja = new EntQueja();
-    Quejas Que = new Quejas();
+    EntProgramas DatosProgramas = new EntProgramas();
+    Programas Pro = new Programas();
 
-    //Procedimiento que lista los datos
-    public String listar() {
+    public String Datos() throws SQLException {
+        String Recorrer = "";
+        ResultSet Rs = null;
 
-        String tbl = "";
-        ResultSet Result = null;
-
-        try {
-            Result = Que.ConsulQuejas();
-            while (Result.next()) {
-                tbl += "<tr>";
-                tbl += "<td Style='display:none'><center>" + Result.getString("ID_QUEJA").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("NOMBRE").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("APELLIDO").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("N_Ficha").toString().trim() + "</center></td>";
-                tbl += "<td Style='display:none'><center>" + Result.getString("Tipo_Queja").toString().trim() + "</center></td>";
-                tbl += "<td Style='display:none'><center>" + Result.getString("Descripcion").toString().trim() + "</center></td>";
-                tbl += "<td Style='display:none'><center>" + Result.getString("Especialidad").toString().trim() + "</center></td>";
-                tbl += "<td><center><button  class='btn btn-black fa fa-print' data-toggle='modal' data-target='#myModal' onclick='mapear.infoAprendriz(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + "," + '\"' + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + "," + '\"' + Result.getString("N_Ficha").toString().trim() + '\"' + "," + '\"' + Result.getString("Especialidad").toString().trim() + '\"' + ")' ></button></center></td>";
-                tbl += "</tr>";
-            }
-        } catch (Exception ex) {
-            tbl = "error" + ex.getMessage();
+        Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
+        Rs = Pro.traerProgramas();
+        while (Rs.next()) {
+            Recorrer += "<option  value='" + Rs.getString("Nombre_Programa") + "' >" + Rs.getString("Nombre_Programa") + "</option>";
         }
-        return tbl;
+        Recorrer += "</select>";
+
+        return Recorrer;
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            out.println(Datos());
         }
     }
 
@@ -83,7 +74,11 @@ public class Citacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ajaxProgramas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -97,7 +92,11 @@ public class Citacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ajaxProgramas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

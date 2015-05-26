@@ -5,11 +5,10 @@
  */
 package Controlador;
 
-import Entidad.EntCuentas;
-import Modelo.Cuentas;
+import Entidad.EntProgramas;
+import Modelo.Programas;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gestion
  */
-@WebServlet(name = "ConCuentas", urlPatterns = {"/ConCuentas"})
-public class ConCuentas extends HttpServlet {
+@WebServlet(name = "ConProgramas", urlPatterns = {"/ConProgramas"})
+public class ConProgramas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,72 +31,33 @@ public class ConCuentas extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    EntCuentas datosCuentas = new EntCuentas();
-    Cuentas Cuen = new Cuentas();
-
-    //Procedimiento que lista los datos
-    public String listar() {
-
-        String tbl = "";
-        ResultSet Result = null;
-        String colorEstado = "";
-        String iconoEstado = "";
-        String nomFuncion = "";
-        try {
-            Result = Cuen.ConsulCuentas();
-            while (Result.next()) {
-                tbl += "<tr>";
-                tbl += "<td Style='display:none'><center>" + Result.getString("ID_CUENTA").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("NOMBRE").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("APELLIDO").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
-                tbl += "<td><center>" + Result.getString("TEL_CEL").toString().trim() + "</center></td>";
-                tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.Cuentas(" + '\"' + Result.getString("ID_CUENTA").toString().trim() + '\"' + "," + '\"' + Result.getString("Nombrecompleto").toString().trim() + '\"' + "," + '\"' + Result.getString("CORREO").toString().trim() + '\"' + "," + '\"' + Result.getString("TEL_CEL").toString().trim() + '\"' + ")' ></button></center></td>";
-                tbl += "</tr>";
-            }
-        } catch (Exception ex) {
-            tbl = "error" + ex.getMessage();
-        }
-        return tbl;
-    }
+    EntProgramas DatosProgramas = new EntProgramas();
+    Programas Pro = new Programas();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String alert = "";
-
+        
+        String alert="";
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             String Evento = request.getParameter("evento");
 
-            if (Evento != null) {
+            if (Evento.equals("Guardar")) {
+                String radio = request.getParameter("opciones");
+                String Nombre = request.getParameter("Nombre");
+                DatosProgramas.setNombre_Programa(Nombre);
 
-                //Se ingresan los datos
-                if (Evento.equals("Guardar")) {
-                    String Nombre = request.getParameter("Nombre");
-                    String Apellido = request.getParameter("Apellido");
-                    String Identificación = request.getParameter("Identificacion");
-                    String Tel_Cel = request.getParameter("Telefono");
-                    String Contraseña = request.getParameter("Contrasena");
-                    String Correo = request.getParameter("Correo");
-                    String Estado = "Habilitado";
-
-                    datosCuentas.setNombre(Nombre);
-                    datosCuentas.setApellido(Apellido);
-                    datosCuentas.setIdentificación(Identificación);
-                    datosCuentas.setTel_Cel(Tel_Cel);
-                    datosCuentas.setContraseña(Contraseña);
-                    datosCuentas.setEstado(Estado);
-                    datosCuentas.setCorreo(Correo);
-
-                    //Cuen.InsertCuentas(datosCuentas);
-                    if (Cuen.InsertCuentas(datosCuentas)) {
+                if (radio.equals("Tecnologo")) {
+                    //Pro.InsertProgramas(DatosProgramas);
+                    if (Pro.InsertProgramas(DatosProgramas)) {
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
-                                + "            title: 'Registro de la cuenta',\n"
-                                + "            message: 'Registro Exitoso',\n"
+                                + "            title: 'Registro de programas de formación',\n"
+                                + "            message: 'Registro exitoso',\n"
                                 + "            closable: true,\n"
                                 + "            closeByBackdrop: false,\n"
                                 + "            closeByKeyboard: false,\n"
@@ -113,13 +73,13 @@ public class ConCuentas extends HttpServlet {
                         alert += "</script>";
                         request.setAttribute("alert", alert);
 
-                        getServletConfig().getServletContext().getRequestDispatcher("/Cuentas.jsp").forward(request, response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     } else {
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_DANGER,\n"
-                                + "            title: 'Registro de la cuenta',\n"
-                                + "            message: 'No se pudo ingresar los datos',\n"
+                                + "            title: 'Registro de programas de formación',\n"
+                                + "            message: 'No se pudo registrar',\n"
                                 + "            closable: true,\n"
                                 + "            closeByBackdrop: false,\n"
                                 + "            closeByKeyboard: false,\n"
@@ -135,30 +95,16 @@ public class ConCuentas extends HttpServlet {
                         alert += "</script>";
                         request.setAttribute("alert", alert);
 
-                        getServletConfig().getServletContext().getRequestDispatcher("/Cuentas.jsp").forward(request, response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     }
-
-                }
-
-                //Se modifican los datos
-                if (Evento.equals("Modificar")) {
-                    String Id_Cuenta = request.getParameter("Id_Cuenta");
-                    String Correo = request.getParameter("Correo");
-                    String Contraseña = request.getParameter("Contrasena");
-                    String Tel_Cel = request.getParameter("Telefono");
-
-                    datosCuentas.setId_Cuenta(Integer.parseInt(Id_Cuenta));
-                    datosCuentas.setCorreo(Correo);
-                    datosCuentas.setContraseña(Contraseña);
-                    datosCuentas.setTel_Cel(Tel_Cel);
-
-                    //Cuen.modificarInfoCuenta(datosCuentas);
-                    if (Cuen.modificarInfoCuenta(datosCuentas)) {
+                } else if (radio.equals("Tecnico")) {
+                    //Pro.InsertProgramas(DatosProgramas);
+                    if (Pro.InsertProgramasTecnico(DatosProgramas)) {
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
-                                + "            title: 'Información de la cuenta',\n"
-                                + "            message: 'Modificación Exitosa',\n"
+                                + "            title: 'Registro de programas de formación',\n"
+                                + "            message: 'Registro exitoso',\n"
                                 + "            closable: true,\n"
                                 + "            closeByBackdrop: false,\n"
                                 + "            closeByKeyboard: false,\n"
@@ -174,13 +120,13 @@ public class ConCuentas extends HttpServlet {
                         alert += "</script>";
                         request.setAttribute("alert", alert);
 
-                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarCuentas.jsp").forward(request, response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     } else {
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_DANGER,\n"
-                                + "            title: 'Información de la cuenta',\n"
-                                + "            message: 'No se pudo realizar los cambiós',\n"
+                                + "            title: 'Registro de programas de formación',\n"
+                                + "            message: 'No se pudo registrar',\n"
                                 + "            closable: true,\n"
                                 + "            closeByBackdrop: false,\n"
                                 + "            closeByKeyboard: false,\n"
@@ -196,7 +142,7 @@ public class ConCuentas extends HttpServlet {
                         alert += "</script>";
                         request.setAttribute("alert", alert);
 
-                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarCuentas.jsp").forward(request, response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     }
                 }
             }

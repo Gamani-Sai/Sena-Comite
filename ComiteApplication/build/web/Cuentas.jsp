@@ -39,6 +39,10 @@
         <!-- Custom Fonts -->
         <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <!-- Custom Fonts -->
+        <link href="css/Notify/prettify.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Notify/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+
     </head>
 
     <body>
@@ -144,13 +148,17 @@
                                 <div class="form-group col-lg-6">
                                     <input class="form-control" placeholder="Identificación" name="Identificacion" type="text" value="">
                                 </div>
-                                
+
                                 <div class="form-group col-lg-6">
                                     <input class="form-control" placeholder="Tel o Cel" name="Telefono" type="text" value="">
                                 </div>
 
+                                <div class="form-group col-lg-12">
+                                    <input class="form-control" placeholder="Correo" name="Correo" type="email" value="">
+                                </div>
+
                                 <div class="form-group col-lg-6">
-                                    <input class="form-control" placeholder="Contraseña" name="Contrasena" type="Contraseña" value="">
+                                    <input class="form-control" placeholder="Contraseña" name="Contrasena" type="password" value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
@@ -159,7 +167,6 @@
                             </div>
                             <div class="panel-footer">
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="evento" value="Cancelar">
@@ -210,6 +217,16 @@
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
+        <!-- Notificación JavaScript -->
+        <script src="css/Notify/run_prettify.js" type="text/javascript"></script>
+        <script src="css/Notify/bootstrap-dialog.min.js" type="text/javascript"></script>
+
+        <%
+            String alerte = (String) request.getAttribute("alert");
+            if (alerte != null) {
+                out.print(alerte);
+            }
+        %>
 
         <!-- Script Validación -->
         <script type="text/javascript">
@@ -297,7 +314,7 @@
                                             message: 'Repita la Contraseña'
                                         },
                                         identical: {
-                                            field: 'Contraseña',
+                                            field: 'Contrasena',
                                             message: 'La Contraseña no coincide'
                                         }
                                     }
@@ -311,6 +328,16 @@
                                         regexp: {
                                             regexp: /^[a-zA-Z0-9_\.]+$/,
                                             message: 'The username can only consist of alphabetical, number, dot and underscore'
+                                        }
+                                    }
+                                },
+                                Correo: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'The email address is required and can\'t be empty'
+                                        },
+                                        emailAddress: {
+                                            message: 'The input is not a valid email address'
                                         }
                                     }
                                 },
