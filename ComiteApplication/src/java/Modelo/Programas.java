@@ -45,7 +45,7 @@ public class Programas extends ConexionDB{
     public boolean InsertProgramasTecnico(EntProgramas DatosProgramas) {
         conectarse();
         boolean retornarObj = false;
-        String insertProgramas = "insert into ProgramasTecnico (Nombre_Programa) values (?)";
+        String insertProgramas = "insert into ProgramasTecnico (Nombre_ProgramaTec) values (?)";
         try {
             Stmp();
             statemen = conector.prepareStatement(insertProgramas);
@@ -63,7 +63,7 @@ public class Programas extends ConexionDB{
         return retornarObj;
     }
     
-    //Para traer todos los programas
+    //Para traer todos los programas tecnologos
     public ResultSet traerProgramas() {
 
         ResultSet rsp = null;
@@ -78,4 +78,21 @@ public class Programas extends ConexionDB{
         }
         return rsp;
     }
+    
+     //Para traer todos los programas tecnicos
+    public ResultSet traerProgramasTec() {
+
+        ResultSet rsp = null;
+        conectarse();
+
+        String profesor = "select Nombre_ProgramaTec  from ProgramasTecnico ";
+        try {
+            consulta = conector.createStatement();
+            rsp = consulta.executeQuery(profesor);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rsp;
+    }
+    
 }

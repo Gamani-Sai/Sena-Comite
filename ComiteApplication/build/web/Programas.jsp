@@ -143,19 +143,11 @@
                             <div class="panel-body">
                                 <div class="alert alert-success" style="display: none;"></div>
 
-
-                                <div class="radio col-lg-6">
-                                    <label>
-                                        <input type="radio" name="opciones" value="Tecnologo" checked>
-                                        Tecnólogo
-                                    </label>
-                                </div>
-
-                                <div class="radio col-lg-6">
-                                    <label>
-                                        <input type="radio" name="opciones" value="Tecnico">
-                                        Técnico
-                                    </label>
+                                <div class="form-group col-lg-12">
+                                    <select name="opciones" class="form-control">
+                                        <option value="Tecnologo">Tecnólogo</option>
+                                        <option value="Tecnico">Técnico</option>
+                                    </select>                                
                                 </div>
 
                                 <div class="form-group col-lg-12">

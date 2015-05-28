@@ -38,16 +38,25 @@ public class ajaxProgramas extends HttpServlet {
     EntProgramas DatosProgramas = new EntProgramas();
     Programas Pro = new Programas();
 
-    public String Datos() throws SQLException {
+    public String Datos(String Radio) throws SQLException {
         String Recorrer = "";
         ResultSet Rs = null;
 
-        Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
-        Rs = Pro.traerProgramas();
-        while (Rs.next()) {
-            Recorrer += "<option  value='" + Rs.getString("Nombre_Programa") + "' >" + Rs.getString("Nombre_Programa") + "</option>";
+        if (Radio.equals("Tecnologo")) {
+            Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
+            Rs = Pro.traerProgramas();
+            while (Rs.next()) {
+                Recorrer += "<option  value='" + Rs.getString("Nombre_Programa") + "' >" + Rs.getString("Nombre_Programa") + "</option>";
+            }
+            Recorrer += "</select>";
+        } else if (Radio.equals("Tecnico")) {
+            Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
+            Rs = Pro.traerProgramasTec();
+            while (Rs.next()) {
+                Recorrer += "<option  value='" + Rs.getString("Nombre_ProgramaTec") + "' >" + Rs.getString("Nombre_ProgramaTec") + "</option>";
+            }
+            Recorrer += "</select>";
         }
-        Recorrer += "</select>";
 
         return Recorrer;
 
@@ -58,7 +67,8 @@ public class ajaxProgramas extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println(Datos());
+            String radio = request.getParameter("opciones");
+            out.println(Datos(radio));
         }
     }
 

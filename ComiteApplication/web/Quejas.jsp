@@ -176,8 +176,34 @@
                                                     <input class="form-control" placeholder="N° De Ficha" name="N_Ficha" type="text" value="">
                                                 </div>
 
-                                                <div class="form-group col-lg-12" onchange="recibir()" id="traer" >
+
+                                                <div class="form-group col-lg-12">
+                                                    <select name="opciones" onchange="recibir()" class="form-control">
+                                                        <option value="">Nivel de formación</option>
+                                                        <option value="Tecnologo">Tecnólogo</option>
+                                                        <option value="Tecnico">Técnico</option>
+                                                    </select>                                
                                                 </div>
+
+                                                <div class="form-group col-lg-12" id="traer" >
+                                                </div>
+                                                
+                                                <!--
+                                                <div class="radio col-lg-6">
+                                                    <label>
+                                                        <input type="radio" name="opciones" value="Tecnologo"  checked="recibir()">
+                                                        Tecnólogo
+                                                    </label>
+                                                </div>
+                                                <div class="radio col-lg-6">
+                                                    <label>
+                                                        <input type="radio" name="opciones" value="Tecnico" onchange="recibir()">
+                                                        Técnico                            
+                                                    </label>
+                                                </div>
+                                                <div class="form-group col-lg-12" id="traer" >
+                                                </div>
+                                                -->
 
                                             </div>
                                         </div>
@@ -302,11 +328,11 @@
 
         <script>
 
-                                                    $('#file-es').fileinput({
-                                                        language: 'es',
-                                                        uploadUrl: '#',
-                                                        allowedFileExtensions: ['jpg', 'png', 'gif'],
-                                                    });
+                                                        $('#file-es').fileinput({
+                                                            language: 'es',
+                                                            uploadUrl: '#',
+                                                            allowedFileExtensions: ['jpg', 'png', 'gif'],
+                                                        });
 
         </script>
 
@@ -315,135 +341,135 @@
 
         <!-- Script Validación -->
         <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        $('#defaultForm').formValidation({
-                                                            message: 'This value is not valid',
-                                                            excluded: ':disabled',
-                                                            err: {
-                                                                container: 'tooltip'
-                                                            },
-                                                            icon: {
-                                                                valid: 'glyphicon glyphicon-ok',
-                                                                invalid: 'glyphicon glyphicon-remove',
-                                                                validating: 'glyphicon glyphicon-refresh'
-                                                            },
-                                                            fields: {
-                                                                Nombre: {
-                                                                    validators: {
-                                                                        stringLength: {
-                                                                            enabled: false,
-                                                                            min: 4,
-                                                                            message: 'The first name must be more than 5 characters'
-                                                                        },
-                                                                        notEmpty: {
-                                                                            message: 'The first name is required'
-                                                                        },
-                                                                        regexp: {
-                                                                            enabled: true,
-                                                                            regexp: /^[a-z]+$/i,
-                                                                            message: 'The first name must consist of a-z, A-Z characters only'
-                                                                        }
-                                                                    }
+                                                        $(document).ready(function () {
+                                                            $('#defaultForm').formValidation({
+                                                                message: 'This value is not valid',
+                                                                excluded: ':disabled',
+                                                                err: {
+                                                                    container: 'tooltip'
                                                                 },
-                                                                Apellido: {
-                                                                    validators: {
-                                                                        stringLength: {
-                                                                            enabled: false,
-                                                                            min: 4,
-                                                                            message: 'The first name must be more than 5 characters'
-                                                                        },
-                                                                        notEmpty: {
-                                                                            message: 'The first name is required'
-                                                                        },
-                                                                        regexp: {
-                                                                            enabled: true,
-                                                                            regexp: /^[a-z]+$/i,
-                                                                            message: 'The first name must consist of a-z, A-Z characters only'
-                                                                        }
-                                                                    }
+                                                                icon: {
+                                                                    valid: 'glyphicon glyphicon-ok',
+                                                                    invalid: 'glyphicon glyphicon-remove',
+                                                                    validating: 'glyphicon glyphicon-refresh'
                                                                 },
-                                                                Identificacion: {
-                                                                    message: 'Identificación no valida',
-                                                                    validators: {
-                                                                        notEmpty: {
-                                                                            message: 'Identificación requerida'
-                                                                        },
-                                                                        digits: {
-                                                                            message: 'Solo numeros'
-                                                                        },
-                                                                        stringLength: {
-                                                                            min: 6,
-                                                                            max: 11,
-                                                                            message: 'Minimo 6 y Maximo 11 caracteres'
+                                                                fields: {
+                                                                    Nombre: {
+                                                                        validators: {
+                                                                            stringLength: {
+                                                                                enabled: false,
+                                                                                min: 4,
+                                                                                message: 'The first name must be more than 5 characters'
+                                                                            },
+                                                                            notEmpty: {
+                                                                                message: 'The first name is required'
+                                                                            },
+                                                                            regexp: {
+                                                                                enabled: true,
+                                                                                regexp: /^[a-z]+$/i,
+                                                                                message: 'The first name must consist of a-z, A-Z characters only'
+                                                                            }
                                                                         }
-                                                                    }
-                                                                },
-                                                                N_Ficha: {
-                                                                    message: 'Ficha no valida',
-                                                                    validators: {
-                                                                        notEmpty: {
-                                                                            message: 'Ficha requerida'
-                                                                        },
-                                                                        digits: {
-                                                                            message: 'Solo numeros'
-                                                                        },
-                                                                        stringLength: {
-                                                                            min: 6,
-                                                                            max: 6,
-                                                                            message: 'Maximo 6'
+                                                                    },
+                                                                    Apellido: {
+                                                                        validators: {
+                                                                            stringLength: {
+                                                                                enabled: false,
+                                                                                min: 4,
+                                                                                message: 'The first name must be more than 5 characters'
+                                                                            },
+                                                                            notEmpty: {
+                                                                                message: 'The first name is required'
+                                                                            },
+                                                                            regexp: {
+                                                                                enabled: true,
+                                                                                regexp: /^[a-z]+$/i,
+                                                                                message: 'The first name must consist of a-z, A-Z characters only'
+                                                                            }
                                                                         }
-                                                                    }
-                                                                },
-                                                                Especialidad: {
-                                                                    validators: {
-                                                                        notEmpty: {
-                                                                            message: 'The country is required and can\'t be empty'
+                                                                    },
+                                                                    Identificacion: {
+                                                                        message: 'Identificación no valida',
+                                                                        validators: {
+                                                                            notEmpty: {
+                                                                                message: 'Identificación requerida'
+                                                                            },
+                                                                            digits: {
+                                                                                message: 'Solo numeros'
+                                                                            },
+                                                                            stringLength: {
+                                                                                min: 6,
+                                                                                max: 11,
+                                                                                message: 'Minimo 6 y Maximo 11 caracteres'
+                                                                            }
                                                                         }
-                                                                    }
-                                                                },
-                                                                TipoQueja: {
-                                                                    validators: {
-                                                                        notEmpty: {
-                                                                            message: 'The country is required and can\'t be empty'
+                                                                    },
+                                                                    N_Ficha: {
+                                                                        message: 'Ficha no valida',
+                                                                        validators: {
+                                                                            notEmpty: {
+                                                                                message: 'Ficha requerida'
+                                                                            },
+                                                                            digits: {
+                                                                                message: 'Solo numeros'
+                                                                            },
+                                                                            stringLength: {
+                                                                                min: 6,
+                                                                                max: 6,
+                                                                                message: 'Maximo 6'
+                                                                            }
                                                                         }
-                                                                    }
-                                                                },
-                                                                Descricion: {
-                                                                    validators: {
-                                                                        stringLength: {
-                                                                            enabled: false,
-                                                                            min: 4,
-                                                                            message: 'The first name must be more than 5 characters'
-                                                                        },
-                                                                        notEmpty: {
-                                                                            message: 'The first name is required'
-                                                                        },
-                                                                        regexp: {
-                                                                            enabled: true,
-                                                                            regexp: /^[a-z]+$/i,
-                                                                            message: 'The first name must consist of a-z, A-Z characters only'
+                                                                    },
+                                                                    opciones: {
+                                                                        validators: {
+                                                                            notEmpty: {
+                                                                                message: 'The country is required and can\'t be empty'
+                                                                            }
                                                                         }
-                                                                    }
-                                                                }, fourthFile: {
-                                                                    validators: {
-                                                                        file: {
-                                                                            extension: 'png,jpg',
-                                                                            maxSize: 10 * 1024 * 1024,
-                                                                            message: 'Please choose a pdf file with a size Max 10M.'
+                                                                    },
+                                                                    TipoQueja: {
+                                                                        validators: {
+                                                                            notEmpty: {
+                                                                                message: 'The country is required and can\'t be empty'
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    Descricion: {
+                                                                        validators: {
+                                                                            stringLength: {
+                                                                                enabled: false,
+                                                                                min: 4,
+                                                                                message: 'The first name must be more than 5 characters'
+                                                                            },
+                                                                            notEmpty: {
+                                                                                message: 'The first name is required'
+                                                                            },
+                                                                            regexp: {
+                                                                                enabled: true,
+                                                                                regexp: /^[a-z]+$/i,
+                                                                                message: 'The first name must consist of a-z, A-Z characters only'
+                                                                            }
+                                                                        }
+                                                                    }, fourthFile: {
+                                                                        validators: {
+                                                                            file: {
+                                                                                extension: 'png,jpg',
+                                                                                maxSize: 10 * 1024 * 1024,
+                                                                                message: 'Please choose a pdf file with a size Max 10M.'
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
-                                                            }
-                                                        }).on('err.form.fv', function (e) {
-                                                            console.log('error');
-                                                            // Active the panel element containing the first invalid element
-                                                            var $form = $(e.target),
-                                                                    validator = $form.data('formValidation'),
-                                                                    $invalidField = validator.getInvalidFields().eq(0),
-                                                                    $collapse = $invalidField.parents('.collapse');
-                                                            $collapse.collapse('show');
+                                                            }).on('err.form.fv', function (e) {
+                                                                console.log('error');
+                                                                // Active the panel element containing the first invalid element
+                                                                var $form = $(e.target),
+                                                                        validator = $form.data('formValidation'),
+                                                                        $invalidField = validator.getInvalidFields().eq(0),
+                                                                        $collapse = $invalidField.parents('.collapse');
+                                                                $collapse.collapse('show');
+                                                            });
                                                         });
-                                                    });
         </script>
 
         <script>
@@ -453,8 +479,13 @@
             });
 
             function recibir() {
+                var valor = $("select[name='opciones']").val();
+                //alert(valor);
                 $.ajax({
                     dataType: "html",
+                    data: {
+                        opciones: valor
+                    },
                     type: "POST",
                     url: "ajaxProgramas",
                     statusCode: {

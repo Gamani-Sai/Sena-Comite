@@ -147,14 +147,14 @@ public class ConQueja extends HttpServlet {
                     String Apellido = request.getParameter("Apellido");
                     String Identificación = request.getParameter("Identificacion");
                     String N_Ficha = request.getParameter("N_Ficha");
-                    String Especialidad = request.getParameter("Especialidad");
+                    //String Especialidad = request.getParameter("Especialidad");
 
                     DatosQueja.setId_Queja(Integer.parseInt(Id_Queja));
                     DatosQueja.setNombre(Nombre);
                     DatosQueja.setApellido(Apellido);
                     DatosQueja.setIdentificación(Identificación);
                     DatosQueja.setN_Ficha(N_Ficha);
-                    DatosQueja.setEspecialidad(Especialidad);
+                    //DatosQueja.setEspecialidad(Especialidad);
 
                     //Que.modificarInfoAprendiz(DatosQueja);
                     if (Que.modificarInfoAprendiz(DatosQueja)) {

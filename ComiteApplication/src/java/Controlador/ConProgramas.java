@@ -37,20 +37,26 @@ public class ConProgramas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String alert="";
-        
+
+        String alert = "";
+
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 
             String Evento = request.getParameter("evento");
+            String ConTecnolo = "Tecnologo";
+            String ConTec = "Tecnico";
 
             if (Evento.equals("Guardar")) {
+
                 String radio = request.getParameter("opciones");
-                String Nombre = request.getParameter("Nombre");
-                DatosProgramas.setNombre_Programa(Nombre);
 
                 if (radio.equals("Tecnologo")) {
+                    String Tecnologo = "";
+                    String Nombre = request.getParameter("Nombre");
+                    Tecnologo = ConTecnolo + " " + Nombre;
+                    
+                    DatosProgramas.setNombre_Programa(Tecnologo);
                     //Pro.InsertProgramas(DatosProgramas);
                     if (Pro.InsertProgramas(DatosProgramas)) {
                         alert += "<script type=\"text/javascript\">";
@@ -98,8 +104,14 @@ public class ConProgramas extends HttpServlet {
                         getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     }
                 } else if (radio.equals("Tecnico")) {
+                    String Tecnico = "";
+                    String Nombre = request.getParameter("Nombre");
+                    Tecnico = ConTec + " " + Nombre;
+                    DatosProgramas.setNombre_Programa(Tecnico);
+
                     //Pro.InsertProgramas(DatosProgramas);
                     if (Pro.InsertProgramasTecnico(DatosProgramas)) {
+
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
