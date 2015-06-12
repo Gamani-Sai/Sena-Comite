@@ -19,6 +19,7 @@ public class EntQueja {
     private String Descripcion = "";
     private String Especialidad="";
     private String Evidencia="";
+    private String Anomalia="";
 
     /**
      * @return the Id_Queja
@@ -144,5 +145,19 @@ public class EntQueja {
      */
     public void setEvidencia(String Evidencia) {
         this.Evidencia = Evidencia;
+    }
+
+    /**
+     * @return the Anomalia
+     */
+    public String getAnomalia() {
+        return Anomalia;
+    }
+
+    /**
+     * @param Anomalia the Anomalia to set
+     */
+    public void setAnomalia(String Anomalia) {
+        this.Anomalia = Anomalia;
     }
 }

@@ -21,6 +21,9 @@
         <!-- Bootstrap Core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
+        <!-- datetimepicker Core CSS -->
+        <link href="css/datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>
+
         <!-- Jquery Validate Core CSS -->
         <link href="css/formValidation.css" rel="stylesheet" type="text/css"/>
 
@@ -39,15 +42,9 @@
         <!-- Custom Fonts -->
         <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- Select2 Core CSS -->
-        <link href="css/select/select2.css" rel="stylesheet" type="text/css"/>
-        <link href="css/select/select2-bootstrap.css" rel="stylesheet" type="text/css"/>
 
-        <!-- File Uploader Core CSS -->
-        <link href="css/fileinput/fileinput.min.css" rel="stylesheet" type="text/css"/>
 
-        <!-- datetimepicker Core CSS -->
-        <link href="css/datetimepicker/datepicker.css" rel="stylesheet" type="text/css"/>
+
 
     </head>
 
@@ -93,10 +90,13 @@
                                 <a class="active" href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
+                            </li>
+                            <li>
+                                <a   href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a class="active" href="Quejas.jsp">Registar queja</a>
+                                        <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
                                         <a href="ConsultarQueja.jsp">Consultar quejas</a>
@@ -106,10 +106,10 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
-                                <a href="Citacion.jsp"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
@@ -139,56 +139,43 @@
                 </div>
                 <!-- /.row -->
 
-                <form id="eventForm" method="post" class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Event</label>
-                        <div class="col-xs-5">
-                            <input type="text" class="form-control" name="name" />
-                        </div>
-                    </div>
+                <center>  
+                    <form id="defaultForm" action="ConProgramas" method="POST">
+                        <div class="panel panel-default" style="width: 44%; margin-top: 50px; margin-left:-100px;">
+                            <div class="panel-body">
+                                <div class="alert alert-success" style="display: none;"></div>
 
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Start date</label>
-                        <div class="col-xs-5 dateContainer">
-                            <div class="input-group input-append date" id="startDatePicker">
-                                <input type="text" class="form-control" name="startDate" />
-                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <div class="form-group col-lg-12">
+                                    <input class="form-control" placeholder="Fecha inicio"  name="Fechainicio" id="dpd1" type="text">
+                                </div>
+
+                                <div class="form-group col-lg-12">
+                                    <input class="form-control" placeholder="Fecha fin"  name="Fechafin" id="dpd2" type="text">
+                                </div>
+
+                            </div>
+
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="evento" value="Cancelar">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="evento" value="Guardar">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">End date</label>
-                        <div class="col-xs-5 dateContainer">
-                            <div class="input-group input-append date" id="endDatePicker">
-                                <input type="text" class="form-control" name="endDate" />
-                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-5 col-xs-offset-3">
-                            <button type="submit" class="btn btn-default">Validate</button>
-                        </div>
-                    </div>
-                </form>
-
+                    </form>
+                </center>
             </div>
-
-            <style type="text/css">
-                /**
-                 * Override feedback icon position
-                 * See http://formvalidation.io/examples/adjusting-feedback-icon-position/
-                 */
-                #eventForm .dateContainer .form-control-feedback {
-                    top: 0;
-                    right: -15px;
-                }
-            </style>
-
-
-
             <!-- /page-wrapper -->
         </div>
         <!-- /#wrapper -->
@@ -206,8 +193,74 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
+        <!-- datetimepicker JavaScript -->
+        <script src="css/datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+        <script>
+            if (top.location != location) {
+                top.location.href = document.location.href;
+            }
+            $(function () {
+                window.prettyPrint && prettyPrint();
+                $('#dp1').datepicker({
+                    format: 'mm-dd-yyyy'
+                });
+                $('#dp2').datepicker();
+
+                var startDate = new Date(2012, 1, 20);
+                var endDate = new Date(2012, 1, 25);
+                $('#dp4').datepicker()
+                        .on('changeDate', function (ev) {
+                            if (ev.date.valueOf() > endDate.valueOf()) {
+                                $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+                            } else {
+                                $('#alert').hide();
+                                startDate = new Date(ev.date);
+                                $('#startDate').text($('#dp4').data('date'));
+                            }
+                            $('#dp4').datepicker('hide');
+                        });
+                $('#dp5').datepicker()
+                        .on('changeDate', function (ev) {
+                            if (ev.date.valueOf() < startDate.valueOf()) {
+                                $('#alert').show().find('strong').text('The end date can not be less then the start date');
+                            } else {
+                                $('#alert').hide();
+                                endDate = new Date(ev.date);
+                                $('#endDate').text($('#dp5').data('date'));
+                            }
+                            $('#dp5').datepicker('hide');
+                        });
+
+                // disabling dates
+                var nowTemp = new Date();
+                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+                var checkin = $('#dpd1').datepicker({
+                    onRender: function (date) {
+                        return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                    }
+                }).on('changeDate', function (ev) {
+                    if (ev.date.valueOf() > checkout.date.valueOf()) {
+                        var newDate = new Date(ev.date)
+                        newDate.setDate(newDate.getDate() + 1);
+                        checkout.setValue(newDate);
+                    }
+                    checkin.hide();
+                    $('#dpd2')[0].focus();
+                }).data('datepicker');
+                var checkout = $('#dpd2').datepicker({
+                    onRender: function (date) {
+                        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+                    }
+                }).on('changeDate', function (ev) {
+                    checkout.hide();
+                }).data('datepicker');
+            });
+        </script>
+
         <!-- Jquery Validate JavaScript -->
-        <script src="js/formValidation.js" type="text/javascript"></script>
+        <script src = "js/formValidation.js" type = "text/javascript" ></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
@@ -220,234 +273,6 @@
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
-        <!-- datetimepicker JavaScript -->
-        <script src="css/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-
-        <script>
-            $(document).ready(function () {
-                $('#startDatePicker').datepicker({
-                    format: 'mm/dd/yyyy'
-                }).on('changeDate', function (e) {
-                    // Revalidate the start date field
-                    $('#eventForm').formValidation('revalidateField', 'startDate');
-                });
-
-                $('#endDatePicker').datepicker({
-                    format: 'mm/dd/yyyy'
-                }).on('changeDate', function (e) {
-                    $('#eventForm').formValidation('revalidateField', 'endDate');
-                });
-
-                $('#eventForm').formValidation({
-                    framework: 'bootstrap',
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        name: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The name is required'
-                                }
-                            }
-                        },
-                        startDate: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The start date is required'
-                                },
-                                date: {
-                                    format: 'MM/DD/YYYY',
-                                    max: 'endDate',
-                                    message: 'The start date is not a valid'
-                                }
-                            }
-                        },
-                        endDate: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The end date is required'
-                                },
-                                date: {
-                                    format: 'MM/DD/YYYY',
-                                    min: 'startDate',
-                                    message: 'The end date is not a valid'
-                                }
-                            }
-                        }
-                    }
-                })
-                        .on('success.field.fv', function (e, data) {
-                            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
-                                // We need to revalidate the end date
-                                data.fv.revalidateField('endDate');
-                            }
-
-                            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
-                                // We need to revalidate the start date
-                                data.fv.revalidateField('startDate');
-                            }
-                        });
-            });
-        </script>
-
-        <!-- FileUploader JavaScript -->
-        <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
-        <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
-
-        <script>
-
-            $('#file-es').fileinput({
-                language: 'es',
-                uploadUrl: '#',
-                allowedFileExtensions: ['jpg', 'png', 'gif'],
-            });
-
-        </script>
-
-        <!-- Select2 JavaScript -->
-        <script src="css/select/select2.min.js" type="text/javascript"></script>
-
-        <script>
-            $(document).ready(function () {
-                $("#select2").select2();
-            });</script>
-
-
-        <!-- Script Validación -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#defaultForm').formValidation({
-                    message: 'This value is not valid',
-                    excluded: ':disabled',
-                    err: {
-                        container: 'tooltip'
-                    },
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        Nombre: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        },
-                        Apellido: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        },
-                        Identificación: {
-                            message: 'Identificación no valida',
-                            validators: {
-                                notEmpty: {
-                                    message: 'Identificación requerida'
-                                },
-                                digits: {
-                                    message: 'Solo numeros'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 11,
-                                    message: 'Minimo 6 y Maximo 11 caracteres'
-                                }
-                            }
-                        },
-                        Ficha: {
-                            message: 'Ficha no valida',
-                            validators: {
-                                notEmpty: {
-                                    message: 'Ficha requerida'
-                                },
-                                digits: {
-                                    message: 'Solo numeros'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 6,
-                                    message: 'Maximo 6'
-                                }
-                            }
-                        },
-                        Especialidad: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The country is required and can\'t be empty'
-                                }
-                            }
-                        },
-                        TipoQueja: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The country is required and can\'t be empty'
-                                }
-                            }
-                        },
-                        Descrición: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        }, fourthFile: {
-                            validators: {
-                                file: {
-                                    extension: 'png,jpg',
-                                    maxSize: 10 * 1024 * 1024,
-                                    message: 'Please choose a pdf file with a size Max 10M.'
-                                }
-                            }
-                        }
-                    }
-                }).on('err.form.fv', function (e) {
-                    console.log('error');
-                    // Active the panel element containing the first invalid element
-                    var $form = $(e.target),
-                            validator = $form.data('formValidation'),
-                            $invalidField = validator.getInvalidFields().eq(0),
-                            $collapse = $invalidField.parents('.collapse');
-                    $collapse.collapse('show');
-                });
-            });
-        </script>
 
     </body>
 

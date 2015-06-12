@@ -82,41 +82,45 @@
                 <!-- /.navbar-top-links -->
 
                 <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="Quejas.jsp">Registar queja</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Consultar quejas</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                        </li>
+                        <li>
+                            <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
+                        </li>
+                        <li>
+                            <a   href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="Quejas.jsp">Registar queja</a>
+                                </li>
+                                <li>
+                                    <a href="ConsultarQueja.jsp">Consultar quejas</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 
-                            <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
-                            </li>
+                        <li>
+                            <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                        </li>
 
-                            <li>
-                                <a class="active" href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="Cuentas.jsp">Registar Cuenta</a>
-                                    </li>
-                                    <li>
-                                        <a class="active" href="ConsultarCuentas.jsp">Consultar Cuenta</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="Cuentas.jsp">Registar Cuenta</a>
+                                </li>
+                                <li>
+                                    <a class="active" href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <!-- /.sidebar-collapse -->
                 </div>
                 <!-- /.navbar-static-side -->
@@ -142,9 +146,11 @@
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Tel o Cel</th>
                                     <th class="text-center">Editar</th>
+                                    <th class="text-center">Estado</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="Estado">
                                 <%
                                     ConCuentas list_Cuenta = new ConCuentas();
                                     out.println(list_Cuenta.listar());
@@ -339,6 +345,70 @@
                     }
                 });
             });
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            function cargar() {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        recargar: "recargue"
+
+                    },
+                    type: "POST",
+                    url: "ConCuentas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#Estado").empty();
+                    $("#Estado").append(datos);
+                });
+            }
+
+            function Estado_habilitado(id_cuenta) {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        idcuenta_mod: id_cuenta,
+                        estado_mod: "Inhabilitado"
+                    },
+                    type: "POST",
+                    url: "ConCuentas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#cambio_est").empty();
+                    $("#cambio_est").append(datos);
+                    cargar();
+                });
+            }
+
+            function Estado_inhabilitado(id_cuenta) {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        idcuenta_mod: id_cuenta,
+                        estado_mod: "Habilitado"
+                    },
+                    type: "POST",
+                    url: "ConCuentas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#cambio_est").empty();
+                    $("#cambio_est").append(datos);
+                    cargar();
+                });
+            }
         </script>
 
     </body>

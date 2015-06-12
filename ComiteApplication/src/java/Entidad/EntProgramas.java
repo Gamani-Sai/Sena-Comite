@@ -11,22 +11,14 @@ package Entidad;
  */
 public class EntProgramas {
 
-    private String Id_Programa = "";
+    private int Id_Programa = 0;
     private String Nombre_Programa = "";
+    private String Estado = "";
 
     /**
      * @return the Id_Programa
      */
-    public String getId_Programa() {
-        return Id_Programa;
-    }
-
-    /**
-     * @param Id_Programa the Id_Programa to set
-     */
-    public void setId_Programa(String Id_Programa) {
-        this.Id_Programa = Id_Programa;
-    }
+    
 
     /**
      * @return the Nombre_Programa
@@ -40,5 +32,33 @@ public class EntProgramas {
      */
     public void setNombre_Programa(String Nombre_Programa) {
         this.Nombre_Programa = Nombre_Programa;
+    }
+
+    /**
+     * @return the Estado
+     */
+    public String getEstado() {
+        return Estado;
+    }
+
+    /**
+     * @param Estado the Estado to set
+     */
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+
+    /**
+     * @return the Id_Programa
+     */
+    public int getId_Programa() {
+        return Id_Programa;
+    }
+
+    /**
+     * @param Id_Programa the Id_Programa to set
+     */
+    public void setId_Programa(int Id_Programa) {
+        this.Id_Programa = Id_Programa;
     }
 }

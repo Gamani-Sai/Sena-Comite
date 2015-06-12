@@ -53,6 +53,17 @@ public class ConCuentas extends HttpServlet {
                 tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("TEL_CEL").toString().trim() + "</center></td>";
                 tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.Cuentas(" + '\"' + Result.getString("ID_CUENTA").toString().trim() + '\"' + "," + '\"' + Result.getString("Nombrecompleto").toString().trim() + '\"' + "," + '\"' + Result.getString("CORREO").toString().trim() + '\"' + "," + '\"' + Result.getString("TEL_CEL").toString().trim() + '\"' + ")' ></button></center></td>";
+
+                if (Result.getString("Estado").toString().trim().equals("Habilitado")) {
+                    colorEstado = "success";
+                    iconoEstado = "ok-circle";
+                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_CUENTA").toString().trim() + ")";
+                } else if (Result.getString("Estado").toString().trim().equals("Inhabilitado")) {
+                    colorEstado = "danger";
+                    iconoEstado = "remove-circle";
+                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_CUENTA").toString().trim() + ")";
+                }
+                tbl += "<td><center><div id='cambio_est'><button  class='btn btn-" + colorEstado + " glyphicon glyphicon-" + iconoEstado + "' onclick =" + nomFuncion + "></button></center></div></center></td>";
                 tbl += "</tr>";
             }
         } catch (Exception ex) {
@@ -70,6 +81,8 @@ public class ConCuentas extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String Evento = request.getParameter("evento");
+            String estado = request.getParameter("estado_mod");
+            String recargar = request.getParameter("recargar");
 
             if (Evento != null) {
 
@@ -99,8 +112,8 @@ public class ConCuentas extends HttpServlet {
                                 + "            title: 'Registro de la cuenta',\n"
                                 + "            message: 'Registro Exitoso',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -121,8 +134,8 @@ public class ConCuentas extends HttpServlet {
                                 + "            title: 'Registro de la cuenta',\n"
                                 + "            message: 'No se pudo ingresar los datos',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-danger',\n"
@@ -160,8 +173,8 @@ public class ConCuentas extends HttpServlet {
                                 + "            title: 'Información de la cuenta',\n"
                                 + "            message: 'Modificación Exitosa',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -182,8 +195,8 @@ public class ConCuentas extends HttpServlet {
                                 + "            title: 'Información de la cuenta',\n"
                                 + "            message: 'No se pudo realizar los cambiós',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-danger',\n"
@@ -199,6 +212,14 @@ public class ConCuentas extends HttpServlet {
                         getServletConfig().getServletContext().getRequestDispatcher("/ConsultarCuentas.jsp").forward(request, response);
                     }
                 }
+            } else if (estado != null) {
+                int id_cuenta_mod = Integer.parseInt(request.getParameter("idcuenta_mod"));
+                datosCuentas.setId_Cuenta(id_cuenta_mod);
+                datosCuentas.setEstado(estado);
+                Cuen.cambiar_estado(datosCuentas);
+
+            } else if (recargar != null) {
+                out.println(listar());
             }
         }
     }

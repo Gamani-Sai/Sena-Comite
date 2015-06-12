@@ -4,6 +4,7 @@
     Author     : gestion
 --%>
 
+<%@page import="Controlador.ConQueja"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +75,33 @@
                 <ul class="nav navbar-top-links navbar-right">
                     <!-- /.dropdown -->
                     <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <table id="tblArea" class="table2 table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th  class="text-center">Quejas nuevas</th>
+                                            <th class="text-center">Ir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="traer1">
+                                    <input class="form-control" id="Id_QuejaDelete" name="Id_QuejaDelete" type="hidden">
+
+                                    <%
+                                        ConQueja listQueja = new ConQueja();
+                                        out.println(listQueja.listaranom());
+                                    %>
+                                    </tbody>
+                                </table>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-alerts -->
+                    </li>
+
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i> Jean Mazo <b class="caret"></b>
                         </a>
@@ -99,7 +127,7 @@
                                 <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
                             </li>
                             <li>
-                                <a  class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a class="active" href="Quejas.jsp">Registar queja</a>
@@ -112,10 +140,10 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
-                                <a href="Citacion.jsp"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
@@ -176,7 +204,6 @@
                                                     <input class="form-control" placeholder="N° De Ficha" name="N_Ficha" type="text" value="">
                                                 </div>
 
-
                                                 <div class="form-group col-lg-12">
                                                     <select name="opciones" onchange="recibir()" class="form-control">
                                                         <option value="">Nivel de formación</option>
@@ -188,23 +215,6 @@
                                                 <div class="form-group col-lg-12" id="traer" >
                                                 </div>
                                                 
-                                                <!--
-                                                <div class="radio col-lg-6">
-                                                    <label>
-                                                        <input type="radio" name="opciones" value="Tecnologo"  checked="recibir()">
-                                                        Tecnólogo
-                                                    </label>
-                                                </div>
-                                                <div class="radio col-lg-6">
-                                                    <label>
-                                                        <input type="radio" name="opciones" value="Tecnico" onchange="recibir()">
-                                                        Técnico                            
-                                                    </label>
-                                                </div>
-                                                <div class="form-group col-lg-12" id="traer" >
-                                                </div>
-                                                -->
-
                                             </div>
                                         </div>
                                     </div>
@@ -286,13 +296,14 @@
 
         <footer>
             <p>Posted by: Hege Refsnes</p>
-            <p>Contact information: <a href="mailto:someone@example.com">
-                    someone@example.com</a>.</p>
+            <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a></p>
         </footer>
 
 
         <!-- jQuery -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
+
+        <script src="js/MapeoDatos.js" type="text/javascript"></script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -327,13 +338,11 @@
         <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
 
         <script>
-
                                                         $('#file-es').fileinput({
                                                             language: 'es',
                                                             uploadUrl: '#',
                                                             allowedFileExtensions: ['jpg', 'png', 'gif'],
                                                         });
-
         </script>
 
         <!-- Select2 JavaScript -->

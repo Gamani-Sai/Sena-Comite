@@ -76,6 +76,31 @@
                 <ul class="nav navbar-top-links navbar-right">
                     <!-- /.dropdown -->
                     <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <table id="tblArea" class="table2 table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th  class="text-center">Quejas nuevas</th>
+                                            <th class="text-center">Ir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="traer1">
+
+                                        <%
+                                            ConQueja listQueja = new ConQueja();
+                                            out.println(listQueja.listaranom());
+                                        %>
+                                    </tbody>
+                                </table>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-alerts -->
+                    </li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i> Jean Mazo <b class="caret"></b>
                         </a>
@@ -95,10 +120,13 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
                             </li>
                             <li>
-                                <a  class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
+                            </li>
+                            <li>
+                                <a class="active" href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="Quejas.jsp">Registar queja</a>
@@ -118,13 +146,13 @@
                             </li>
 
                             <li>
-                                <a  href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-users fa-fw"></i> Cuentas de Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="Cuentas.jsp">Registar Cuenta</a>
                                     </li>
                                     <li>
-                                        <a  href="ConsultarCuentas.jsp">Consultar Cuenta</a>
+                                        <a href="ConsultarCuentas.jsp">Consultar Cuenta</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,16 +182,18 @@
                                     <th class="text-center">Apellidos</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">N° De Ficha</th>
+                                    <th class="text-center">Fecha</th>
                                     <th class="text-center" Style="display:none"></th>
                                     <th class="text-center" Style="display:none"></th>
                                     <th class="text-center" Style="display:none"></th>
                                     <th class="text-center">Editar</th>
                                     <th class="text-center">Mas</th>
+                                    <th class="text-center">Eliminar</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <%
-                                    ConQueja listQueja = new ConQueja();
                                     out.print(listQueja.listar());
                                 %>
                             </tbody>
@@ -188,7 +218,7 @@
                                         <div class="alert alert-success" style="display: none;"></div>
 
                                         <div class="form-group col-lg-6">
-                                            <input class="form-control" id="Id_Queja" name="Id_Queja" type="hidden">
+                                            <input  class="form-control" id="Id_Queja" name="Id_Queja" type="hidden">
                                             <input class="form-control" id="Nombre" placeholder="Nombre" name="Nombre" type="text">
                                         </div>
 
@@ -336,25 +366,30 @@
                 </div>
             </div>
 
-            <!-- /Alerta -->
-            <div class="modal fade">
+
+            <!-- set up the modal to start hidden and fade in and out -->
+            <div id="myModal2" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>One fine body…</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
+                        <form id="defaultForm1" action="ConQueja"  method="POST">
+                            <!-- dialog body -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Eliminar Queja</h4>
+                            </div>
+                            <div class="modal-body">
+                                Esta seguro que desea eliminar la queja
+                                <input class="form-control" id="Id_QuejaDelete" name="Id_QuejaDelete" type="hidden">
+                            </div>
+                            <!-- dialog buttons -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" name="evento" value="Delete" class="btn btn-success">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <!-- /page-wrapper -->
         </div>

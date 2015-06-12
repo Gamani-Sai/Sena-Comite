@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author gestion
  */
-public class Programas extends ConexionDB{
+public class Programas extends ConexionDB {
 
     EntProgramas ent = new EntProgramas();
     private PreparedStatement statemen;
@@ -23,12 +23,12 @@ public class Programas extends ConexionDB{
     public boolean InsertProgramas(EntProgramas DatosProgramas) {
         conectarse();
         boolean retornarObj = false;
-        String insertProgramas = "insert into Programas (Nombre_Programa) values (?)";
+        String insertProgramas = "insert into Programas (Nombre_Programa,Estado) values (?,?)";
         try {
             Stmp();
             statemen = conector.prepareStatement(insertProgramas);
             statemen.setString(1, DatosProgramas.getNombre_Programa());
-            
+            statemen.setString(2, DatosProgramas.getEstado());
 
             int cont = statemen.executeUpdate();
             if (cont > 0) {
@@ -40,7 +40,7 @@ public class Programas extends ConexionDB{
         }
         return retornarObj;
     }
-    
+
     //Procedimiento para inserta datos en la tabla Programas
     public boolean InsertProgramasTecnico(EntProgramas DatosProgramas) {
         conectarse();
@@ -50,7 +50,6 @@ public class Programas extends ConexionDB{
             Stmp();
             statemen = conector.prepareStatement(insertProgramas);
             statemen.setString(1, DatosProgramas.getNombre_Programa());
-            
 
             int cont = statemen.executeUpdate();
             if (cont > 0) {
@@ -62,14 +61,14 @@ public class Programas extends ConexionDB{
         }
         return retornarObj;
     }
-    
+
     //Para traer todos los programas tecnologos
     public ResultSet traerProgramas() {
 
         ResultSet rsp = null;
         conectarse();
 
-        String profesor = "select Nombre_Programa  from Programas ";
+        String profesor = "select ID_PROGRAMA,Nombre_Programa,Estado  from Programas ";
         try {
             consulta = conector.createStatement();
             rsp = consulta.executeQuery(profesor);
@@ -78,14 +77,14 @@ public class Programas extends ConexionDB{
         }
         return rsp;
     }
-    
-     //Para traer todos los programas tecnicos
+
+    //Para traer todos los programas tecnicos
     public ResultSet traerProgramasTec() {
 
         ResultSet rsp = null;
         conectarse();
 
-        String profesor = "select Nombre_ProgramaTec  from ProgramasTecnico ";
+        String profesor = "select ID_PROGRAMATEC, Nombre_ProgramaTec , EstadoTec  from ProgramasTecnico ";
         try {
             consulta = conector.createStatement();
             rsp = consulta.executeQuery(profesor);
@@ -95,4 +94,46 @@ public class Programas extends ConexionDB{
         return rsp;
     }
     
+    //Para cambiar el estado tabla tecnologo
+    public boolean cambiar_estado(EntProgramas datosProgramas) {
+        conectarse();
+        boolean retornarObj = false;
+        String cambio_est = "update Programas set  Estado = ? where Id_Programa = ?";
+        try {
+            Stmp();
+            statemen = conector.prepareStatement(cambio_est);
+            statemen.setString(1, datosProgramas.getEstado());
+            statemen.setInt(2, datosProgramas.getId_Programa());
+
+            int cont = statemen.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception e) {
+        }
+
+        return retornarObj;
+    }
+    
+     //Para cambiar el estado tabla tecnicos
+    public boolean cambiar_estadotec(EntProgramas datosProgramas) {
+        conectarse();
+        boolean retornarObj = false;
+        String cambio_est = "update ProgramasTecnico set  EstadoTec = ? where Id_ProgramaTec = ?";
+        try {
+            Stmp();
+            statemen = conector.prepareStatement(cambio_est);
+            statemen.setString(1, datosProgramas.getEstado());
+            statemen.setInt(2, datosProgramas.getId_Programa());
+
+            int cont = statemen.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception e) {
+        }
+
+        return retornarObj;
+    }
+
 }

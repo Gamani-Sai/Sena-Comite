@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/src/java/Controlador/ConProgramas.java</file>
-            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/web/Programas.jsp</file>
-            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/src/java/Controlador/ajaxProgramas.java</file>
-            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/src/java/Modelo/Programas.java</file>
-            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/web/Quejas.jsp</file>
+            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/web/FechasComite.jsp</file>
+            <file>file:/C:/Users/gestion/Desktop/Sena-Comite/ComiteApplication/src/java/Entidad/entFechas.java</file>
         </group>
     </open-files>
 </project-private>

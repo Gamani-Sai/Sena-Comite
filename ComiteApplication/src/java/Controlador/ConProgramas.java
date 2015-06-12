@@ -9,6 +9,7 @@ import Entidad.EntProgramas;
 import Modelo.Programas;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,61 @@ public class ConProgramas extends HttpServlet {
     EntProgramas DatosProgramas = new EntProgramas();
     Programas Pro = new Programas();
 
+    //Procedimiento que lista los datos
+    public String listar() {
+
+        String tbl = "";
+        ResultSet Result = null;
+        String colorEstado = "";
+        String iconoEstado = "";
+        String nomFuncion = "";
+        try {
+            //Consulta de tecnologos
+            Result = Pro.traerProgramas();
+            while (Result.next()) {
+                tbl += "<tr>";
+                tbl += "<td style='display:none'><center>" + Result.getString("ID_PROGRAMA").toString().trim() + "</center></td>";
+                tbl += "<td><center>" + Result.getString("Nombre_Programa").toString().trim() + "</center></td>";
+
+                if (Result.getString("Estado").toString().trim().equals("Habilitado")) {
+                    colorEstado = "success";
+                    iconoEstado = "ok-circle";
+                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ")";
+                } else if (Result.getString("Estado").toString().trim().equals("Inhabilitado")) {
+                    colorEstado = "danger";
+                    iconoEstado = "remove-circle";
+                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ")";
+                }
+                tbl += "<td><center><div id='cambio_est'><button  class='btn btn-" + colorEstado + " glyphicon glyphicon-" + iconoEstado + "' onclick =" + nomFuncion + "></button></center></div></center></td>";
+                tbl += "</tr>";
+
+            }
+            //Consulta de tecnicos
+            Result = Pro.traerProgramasTec();
+            while (Result.next()) {
+                tbl += "<tr>";
+                tbl += "<td style='display:none'><center>" + Result.getString("ID_PROGRAMATEC").toString().trim() + "</center></td>";
+                tbl += "<td><center>" + Result.getString("Nombre_ProgramaTec").toString().trim() + "</center></td>";
+
+                if (Result.getString("EstadoTec").toString().trim().equals("Habilitado")) {
+                    colorEstado = "success";
+                    iconoEstado = "ok-circle";
+                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ")";
+                } else if (Result.getString("EstadoTec").toString().trim().equals("Inhabilitado")) {
+                    colorEstado = "danger";
+                    iconoEstado = "remove-circle";
+                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ")";
+                }
+                tbl += "<td><center><div id='cambio_est'><button  class='btn btn-" + colorEstado + " glyphicon glyphicon-" + iconoEstado + "' onclick =" + nomFuncion + "></button></center></div></center></td>";
+                tbl += "</tr>";
+            }
+
+        } catch (Exception ex) {
+            tbl = "error" + ex.getMessage();
+        }
+        return tbl;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,6 +102,8 @@ public class ConProgramas extends HttpServlet {
             String Evento = request.getParameter("evento");
             String ConTecnolo = "Tecnologo";
             String ConTec = "Tecnico";
+            String estado = request.getParameter("estado_mod");
+            String recargar = request.getParameter("recargar");
 
             if (Evento.equals("Guardar")) {
 
@@ -55,7 +113,8 @@ public class ConProgramas extends HttpServlet {
                     String Tecnologo = "";
                     String Nombre = request.getParameter("Nombre");
                     Tecnologo = ConTecnolo + " " + Nombre;
-                    
+                    String Estado = "Habilitado";
+                    DatosProgramas.setEstado(Estado);
                     DatosProgramas.setNombre_Programa(Tecnologo);
                     //Pro.InsertProgramas(DatosProgramas);
                     if (Pro.InsertProgramas(DatosProgramas)) {
@@ -65,8 +124,8 @@ public class ConProgramas extends HttpServlet {
                                 + "            title: 'Registro de programas de formación',\n"
                                 + "            message: 'Registro exitoso',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -87,8 +146,8 @@ public class ConProgramas extends HttpServlet {
                                 + "            title: 'Registro de programas de formación',\n"
                                 + "            message: 'No se pudo registrar',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-danger',\n"
@@ -118,8 +177,8 @@ public class ConProgramas extends HttpServlet {
                                 + "            title: 'Registro de programas de formación',\n"
                                 + "            message: 'Registro exitoso',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -140,8 +199,8 @@ public class ConProgramas extends HttpServlet {
                                 + "            title: 'Registro de programas de formación',\n"
                                 + "            message: 'No se pudo registrar',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-danger',\n"
@@ -157,6 +216,15 @@ public class ConProgramas extends HttpServlet {
                         getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     }
                 }
+            } else if (estado != null) {
+                int id_programas_mod = Integer.parseInt(request.getParameter("idprogramas_mod"));
+                DatosProgramas.setId_Programa(id_programas_mod);
+                DatosProgramas.setEstado(estado);
+                Pro.cambiar_estado(DatosProgramas);
+                Pro.cambiar_estadotec(DatosProgramas);
+
+            } else if (recargar != null) {
+                out.println(listar());
             }
         }
     }

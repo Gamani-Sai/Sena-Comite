@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import Entidad.EntQueja;
 import Modelo.Quejas;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -50,17 +51,37 @@ public class ConQueja extends HttpServlet {
                 tbl += "<td><center>" + Result.getString("APELLIDO").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("IDENTIFICACIÓN").toString().trim() + "</center></td>";
                 tbl += "<td><center>" + Result.getString("N_Ficha").toString().trim() + "</center></td>";
+                tbl += "<td><center>" + Result.getString("Fecha").toString().trim() + "</center></td>";
                 tbl += "<td Style='display:none'><center>" + Result.getString("Tipo_Queja").toString().trim() + "</center></td>";
                 tbl += "<td Style='display:none'><center>" + Result.getString("Descripcion").toString().trim() + "</center></td>";
                 tbl += "<td Style='display:none'><center>" + Result.getString("Especialidad").toString().trim() + "</center></td>";
                 tbl += "<td><center><button  class='btn btn-primary fa fa-edit' data-toggle='modal' data-target='#myModal' onclick='mapear.infoAprendriz(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + "," + '\"' + Result.getString("NOMBRE").toString().trim() + '\"' + "," + '\"' + Result.getString("APELLIDO").toString().trim() + '\"' + "," + '\"' + Result.getString("IDENTIFICACIÓN").toString().trim() + '\"' + "," + '\"' + Result.getString("N_Ficha").toString().trim() + '\"' + "," + '\"' + Result.getString("Especialidad").toString().trim() + '\"' + ")' ></button></center></td>";
                 tbl += "<td><center><button  class='btn btn-success fa fa-plus-circle' data-toggle='modal' data-target='#myModal1' onclick='mapear.infoQueja(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + "," + '\"' + Result.getString("Tipo_Queja").toString().trim() + '\"' + "," + '\"' + Result.getString("Descripcion").toString().trim() + '\"' + ")' ></button></center></td>";
+                tbl += "<td><center><button  class='btn btn-danger fa fa-trash-o' data-toggle='modal' data-target='#myModal2' onclick='mapear.delete(" + '\"' + Result.getString("ID_QUEJA").toString().trim() + '\"' + ")' ></button></center></td>";
                 tbl += "</tr>";
             }
         } catch (Exception ex) {
             tbl = "error" + ex.getMessage();
         }
         return tbl;
+    }
+
+    //Procedimiento que lista las anomalias
+    public String listaranom() throws SQLException {
+        String Recorrertbl = "";
+        ResultSet list_anom = Que.mostraranomolias();
+        try {
+            while (list_anom.next()) {
+                Recorrertbl += "<tr>";
+                Recorrertbl += "<td><center><i class='fa fa-envelope'></i> " + list_anom.getString("Nombre").toString().trim() + "</center></td>";
+                Recorrertbl += "<td><center><a href='ConsultarQueja.jsp' class='fa fa-list-ul'></a></center></td>";
+                Recorrertbl += "</tr>";
+            }
+        } catch (Exception e) {
+            Recorrertbl = "error" + e.getMessage();
+        }
+
+        return Recorrertbl;
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -81,6 +102,7 @@ public class ConQueja extends HttpServlet {
                     String Tipo_Queja = request.getParameter("TipoQueja");
                     String Descripcion = request.getParameter("Descricion");
                     String Especialidad = request.getParameter("Especialidad");
+                    String Anomalia = "Ver";
                     //String Evidencia = request.getParameter("fourthFile1");
 
                     DatosQueja.setNombre(Nombre);
@@ -90,6 +112,7 @@ public class ConQueja extends HttpServlet {
                     DatosQueja.setTipo_Queja(Tipo_Queja);
                     DatosQueja.setDescripcion(Descripcion);
                     DatosQueja.setEspecialidad(Especialidad);
+                    DatosQueja.setAnomalia(Anomalia);
                     //DatosQueja.setEvidencia(Evidencia);
 
                     //Que.InsertQueja(DatosQueja);
@@ -100,8 +123,8 @@ public class ConQueja extends HttpServlet {
                                 + "            title: 'Registro de queja',\n"
                                 + "            message: 'Registro exitoso',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -122,11 +145,11 @@ public class ConQueja extends HttpServlet {
                                 + "            title: 'Registro de queja',\n"
                                 + "            message: 'No se pudo registrar',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
-                                + "                cssClass: 'btn-DANGER',\n"
+                                + "                cssClass: 'btn-danger',\n"
                                 + "                label: 'Ok',\n"
                                 + "                action: function(dialogRef){\n"
                                 + "                    dialogRef.close();\n"
@@ -139,6 +162,13 @@ public class ConQueja extends HttpServlet {
                         getServletConfig().getServletContext().getRequestDispatcher("/Quejas.jsp").forward(request, response);
                     }
 
+                }
+
+                if (Evento.equals("Anomalia")) {
+                    String Anomalia = "Visto";
+                    DatosQueja.setAnomalia(Anomalia);
+
+                    Que.modificarAnomalia(DatosQueja);
                 }
 
                 if (Evento.equals("modInfoAprendiz")) {
@@ -164,8 +194,8 @@ public class ConQueja extends HttpServlet {
                                 + "            title: 'Información del aprendiz',\n"
                                 + "            message: 'Modificación Exitosa',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -180,6 +210,28 @@ public class ConQueja extends HttpServlet {
 
                         getServletConfig().getServletContext().getRequestDispatcher("/ConsultarQueja.jsp").forward(request, response);
 
+                    } else {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_DANGER,\n"
+                                + "            title: 'Registro de queja',\n"
+                                + "            message: 'No se pudo registrar',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-danger',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/Quejas.jsp").forward(request, response);
                     }
                 }
 
@@ -200,8 +252,8 @@ public class ConQueja extends HttpServlet {
                                 + "            title: 'Información de la queja',\n"
                                 + "            message: 'Modificación Exitosa',\n"
                                 + "            closable: true,\n"
-                                + "            closeByBackdrop: false,\n"
-                                + "            closeByKeyboard: false,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
                                 + "            draggable: true,\n"
                                 + "            buttons: [{\n"
                                 + "                cssClass: 'btn-success',\n"
@@ -218,6 +270,60 @@ public class ConQueja extends HttpServlet {
 
                     }
                 }
+
+                if (Evento.equals("Delete")) {
+                    String IdDelete = request.getParameter("Id_QuejaDelete");
+
+                    DatosQueja.setId_Queja(Integer.parseInt(IdDelete));
+
+                    if (Que.Eliminar(DatosQueja)) {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_SUCCESS,\n"
+                                + "            title: 'Eliminación de registro',\n"
+                                + "            message: 'Eliminado exitosamente',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-success',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarQueja.jsp").forward(request, response);
+                    } else {
+                        alert += "<script type=\"text/javascript\">";
+                        alert += "BootstrapDialog.show({\n"
+                                + "            type: BootstrapDialog.TYPE_DANGER,\n"
+                                + "            title: 'Eliminación de registro',\n"
+                                + "            message: 'No se pudo eliminar la queja',\n"
+                                + "            closable: true,\n"
+                                + "            closeByBackdrop: true,\n"
+                                + "            closeByKeyboard: true,\n"
+                                + "            draggable: true,\n"
+                                + "            buttons: [{\n"
+                                + "                cssClass: 'btn-danger',\n"
+                                + "                label: 'Ok',\n"
+                                + "                action: function(dialogRef){\n"
+                                + "                    dialogRef.close();\n"
+                                + "                }\n"
+                                + "            }]\n"
+                                + "        });";
+                        alert += "</script>";
+                        request.setAttribute("alert", alert);
+
+                        getServletConfig().getServletContext().getRequestDispatcher("/ConsultarQueja.jsp").forward(request, response);
+                    }
+
+                }
+
             }
 
         }

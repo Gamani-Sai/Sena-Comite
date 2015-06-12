@@ -4,7 +4,7 @@
     Author     : gestion
 --%>
 
-<%@page import="Controlador.ConCuentas"%>
+<%@page import="Controlador.ConProgramas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,10 +104,10 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
-                                <a href="Citacion.jsp"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
@@ -139,32 +139,38 @@
 
                 <center>  
                     <form id="defaultForm" action="ConProgramas" method="POST">
-                        <div class="panel panel-default" style="width: 44%; margin-top: 16px; margin-left:-610px;">
+                        <div class="panel panel-default" style="width: 44%; margin-top: 50px; margin-left:-100px;">
                             <div class="panel-body">
                                 <div class="alert alert-success" style="display: none;"></div>
 
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-10">
                                     <select name="opciones" class="form-control">
                                         <option value="Tecnologo">Tecnólogo</option>
                                         <option value="Tecnico">Técnico</option>
                                     </select>                                
                                 </div>
 
-                                <div class="form-group col-lg-12">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info  fa fa-list" data-toggle="modal" data-target=".bs-example-modal-lg"></button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-10">
                                     <input class="form-control" placeholder="Nombre" name="Nombre" type="text">
                                 </div>
                             </div>
 
                             <div class="panel-footer">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <input class="btn btn-default btn-block" type="reset" id="btnGuardar" name="evento" value="Cancelar">
 
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <input class="btn btn-success btn-block" type="submit" id="btnGuardar" name="evento" value="Guardar">
 
@@ -176,75 +182,37 @@
                     </form>
                 </center>
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="area">
-                        <table id="tblCuenta" class="table table-hover" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" Style="display:none"></th>
-                                    <th class="text-center">Nombre de programa</th> 
-                                    <th class="text-center">Editar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    ConCuentas list_Cuenta = new ConCuentas();
-                                    out.println(list_Cuenta.listar());
-                                %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-                <!--Modal de cuentas de usuario -->                             
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <!--Modal de programas --> 
+                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Modificar información de la cuenta</h4>
+                                <h4 class="modal-title" id="myModalLabel">Modificar información de los programas</h4>
                             </div>
-                            <form id="defaultForm" action="ConCuentas" method="POST">
+                            <form id="defaultForm" action="" method="POST">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="area">
 
-                                        <div class="alert alert-success" style="display: none;"></div>
+                                                <input class="form-control" id="ID_PROGRAMATEC" name="ID_PROGRAMATEC" type="hidden">
 
-                                        <div class="form-group col-lg-12">
-                                            <input class="form-control" id="Id_Cuenta" name="Id_Cuenta" type="hidden">
-                                            <input class="form-control" id="Nombre" placeholder="Nombre" name="Nombre" type="text" disabled>
-                                        </div>
-
-                                        <div class="form-group col-lg-6">
-                                            <input class="form-control" id="Correo" placeholder="Correo" name="Correo" type="email" value="">
-                                        </div>
-
-                                        <div class="form-group col-lg-6">
-                                            <input class="form-control" id="Telefono" placeholder="Tel o Cel"  name="Telefono" type="text" value="">
-                                        </div>
-
-                                        <div class="form-group col-lg-6">
-                                            <input class="form-control" placeholder="Contraseña" name="Contrasena" type="password" value="">
-                                        </div>
-
-                                        <div class="form-group col-lg-6">
-                                            <input class="form-control" placeholder="Confirmar Contraseña" name="confirm_Contraseña" type="password" value="">
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <button type="reset" class="btn btn-default btn-block" data-dismiss="modal">Cancelar</button>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <button class="btn btn-success btn-block" type="submit" id="btnGuardar" name="evento" value="Modificar">Guardar</button>
-                                                </div>
+                                                <table id="tblCuenta" class="table table-hover" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" Style="display:none"></th>
+                                                            <th class="text-center">Nombre de programa</th> 
+                                                            <th class="text-center">Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="Estado">
+                                                        <%
+                                                            ConProgramas list_Programas = new ConProgramas();
+                                                            out.println(list_Programas.listar());
+                                                        %>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -253,8 +221,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <!-- /page-wrapper -->
         </div>
@@ -372,6 +338,70 @@
             });
         </script>
 
+
+        <script type="text/javascript" charset="utf-8">
+            function cargar() {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        recargar: "recargue"
+
+                    },
+                    type: "POST",
+                    url: "ConProgramas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#Estado").empty();
+                    $("#Estado").append(datos);
+                });
+            }
+
+            function Estado_habilitado(ID_PROGRAMATEC) {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        idprogramas_mod: ID_PROGRAMATEC,
+                        estado_mod: "Inhabilitado"
+                    },
+                    type: "POST",
+                    url: "ConProgramas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#cambio_est").empty();
+                    $("#cambio_est").append(datos);
+                    cargar();
+                });
+
+            }
+            function Estado_inhabilitado(ID_PROGRAMATEC) {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        idprogramas_mod: ID_PROGRAMATEC,
+                        estado_mod: "Habilitado"
+                    },
+                    type: "POST",
+                    url: "ConProgramas",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+                    $("#cambio_est").empty();
+                    $("#cambio_est").append(datos);
+                    cargar();
+                });
+            }
+        </script>
 
         <script>
             $(document).ready(function () {

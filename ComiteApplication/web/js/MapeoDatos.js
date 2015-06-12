@@ -21,13 +21,16 @@ var mapear = {
         $("#TipoQueja").val(TipoQueja);
         $("#Descricion").val(Descricion);
     },
-    Cuentas: function (Id_Cuenta, Nombrecompleto, CORREO,TEL_CEL)
+    delete: function (Id_QuejaDelete)
+    {
+        $("#Id_QuejaDelete").val(Id_QuejaDelete);
+    },
+    Cuentas: function (Id_Cuenta, Nombrecompleto, CORREO, TEL_CEL)
     {
         $("#Id_Cuenta").val(Id_Cuenta);
         $("#Nombre").val(Nombrecompleto);
         $("#Correo").val(CORREO);
         $("#Telefono").val(TEL_CEL);
     }
-
 };
 

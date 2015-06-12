@@ -77,23 +77,26 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
+                                <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
+                            </li>
+                            <li>
+                                <a   href="#"><i class="fa fa-files-o fa-fw"></i>Recepción de quejas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="Quejas.jsp">Registar queja</a>
                                     </li>
                                     <li>
-                                        <a href="#">Consultar quejas</a>
+                                        <a href="ConsultarQueja.jsp">Consultar quejas</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
+                                <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
