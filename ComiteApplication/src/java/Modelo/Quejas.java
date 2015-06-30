@@ -149,7 +149,7 @@ public class Quejas extends ConexionDB {
         }
         return rs_mosAnm;
     }
-    
+
     //Procedimiento para Modificar la información del aprendiz
     public boolean modificarAnomalia(EntQueja datosQueja) {
         conectarse();
@@ -174,6 +174,22 @@ public class Quejas extends ConexionDB {
             System.out.println(ex.getMessage());
         }
         return retornarObj;
+    }
+
+    //Procedimiento para traer numero de anomalias
+    public ResultSet NumAnomalia() {
+
+        ResultSet rs_cntAnm = null;
+        conectarse();
+        String traer_anomalia = "select count (Nombre) as numAnomalia from Quejas where  Anomalia= 'Ver'";
+        try {
+            consulta = conector.createStatement();
+            rs_cntAnm = consulta.executeQuery(traer_anomalia);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rs_cntAnm;
     }
 
 }

@@ -85,7 +85,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fecha de Comité</a>
                             </li>
                             <li>
                                 <a class="active" href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
@@ -140,6 +140,13 @@
                 <center>  
                     <form id="defaultForm" action="ConProgramas" method="POST">
                         <div class="panel panel-default" style="width: 44%; margin-top: 50px; margin-left:-100px;">
+
+
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Agregar un nuevo programa de formación</h4>
+                            </div>
+
+
                             <div class="panel-body">
                                 <div class="alert alert-success" style="display: none;"></div>
 

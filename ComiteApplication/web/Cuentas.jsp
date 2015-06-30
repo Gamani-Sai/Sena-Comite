@@ -84,7 +84,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fecha de Comité</a>
                             </li>
                             <li>
                                 <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
@@ -139,6 +139,11 @@
                 <center>  
                     <form id="defaultForm" action="ConCuentas" method="POST">
                         <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
+
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Crear nuevo usuario</h4>
+                            </div>
+                            
                             <div class="panel-body">
 
                                 <div class="alert alert-success" style="display: none;"></div>

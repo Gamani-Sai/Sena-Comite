@@ -31,6 +31,10 @@ var mapear = {
         $("#Nombre").val(Nombrecompleto);
         $("#Correo").val(CORREO);
         $("#Telefono").val(TEL_CEL);
+    },
+    DescicionApren: function (Descricion)
+    {
+        $("#Descricion").val(Descricion);
     }
 };
 

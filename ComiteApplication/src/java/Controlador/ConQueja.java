@@ -16,6 +16,8 @@ import Entidad.EntQueja;
 import Modelo.Quejas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +37,18 @@ public class ConQueja extends HttpServlet {
      */
     EntQueja DatosQueja = new EntQueja();
     Quejas Que = new Quejas();
+
+    //Procedimiento para saber el numero de anomalias
+    public String anomaliacont() throws SQLException {
+        int num_anoma = 0;
+        String pintar = "";
+        ResultSet cnt_anomalia = Que.NumAnomalia();
+        while (cnt_anomalia.next()) {
+            num_anoma = cnt_anomalia.getInt("numAnomalia");
+            pintar = Integer.toString(num_anoma);
+        }
+        return pintar;
+    }
 
     //Procedimiento que lista los datos
     public String listar() {
@@ -85,12 +99,14 @@ public class ConQueja extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String alert = "";
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String Evento = request.getParameter("evento");
+
+            out.printf(anomaliacont());
 
             if (Evento != null) {
 
@@ -341,7 +357,11 @@ public class ConQueja extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConQueja.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -355,7 +375,11 @@ public class ConQueja extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConQueja.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

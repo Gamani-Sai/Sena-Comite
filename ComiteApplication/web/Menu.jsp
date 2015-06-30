@@ -77,7 +77,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fecha de Comité</a>
                             </li>
                             <li>
                                 <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
@@ -113,6 +113,16 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-list fa-fw"></i>Reportes<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="ReporteAprendiz.jsp">Historial de Aprendiz</a>
+                                    </li>
+                                </ul>
+                            </li>
+
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
@@ -123,12 +133,28 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dashboard</h1>
                     </div>
                     <!-- /.col-lg-12 -->
 
                 </div>
+
+                <style>
+                    .h2,h2{
+                        font-size:30px !important;
+                    }
+                    .h3,h3{
+                        font-size:24px !important;
+                    }
+                </style>
+
+                <div class="panel-footer" style=" margin-top: 10%;">
+                    <div class="row">
+                        <h2>Comité de Evalución y Seguimiento </h2>
+                        <h3 style="margin-left: 26%;">de Aprendices</h3>
+                    </div>
+                </div>
                 <!-- /#page-wrapper -->
+
 
             </div>
             <!-- /#wrapper -->

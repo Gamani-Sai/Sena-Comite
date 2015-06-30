@@ -76,7 +76,7 @@
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                            <span class="btn-block"><i class="fa fa-bell fa-fw"></i> <%ConQueja listQueja = new ConQueja(); out.println(listQueja.anomaliacont());%> <i class="fa fa-caret-down"></i> </span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li>
@@ -89,9 +89,8 @@
                                     </thead>
                                     <tbody id="traer1">
                                     <input class="form-control" id="Id_QuejaDelete" name="Id_QuejaDelete" type="hidden">
-
                                     <%
-                                        ConQueja listQueja = new ConQueja();
+                                        
                                         out.println(listQueja.listaranom());
                                     %>
                                     </tbody>
@@ -121,7 +120,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fecha de Comité</a>
                             </li>
                             <li>
                                 <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
@@ -214,7 +213,7 @@
 
                                                 <div class="form-group col-lg-12" id="traer" >
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>

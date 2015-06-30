@@ -87,7 +87,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a class="active" href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fechas de comitez</a>
+                                <a class="active" href="FechasComite.jsp"><i class="fa fa-calendar fa-fw"></i> Fecha de Comité</a>
                             </li>
                             <li>
                                 <a href="Programas.jsp"><i class="fa fa-mortar-board fa-fw"></i> Programas de formación</a>
@@ -133,15 +133,20 @@
             <div class="container" id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header">Fechas para comite</h3>
+                        <h3 class="page-header">Fecha Comité Evaluación y Seguimiento</h3>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
 
                 <center>  
-                    <form id="defaultForm" action="ConProgramas" method="POST">
+                    <form id="defaultForm" action="ConFechas" method="POST">
                         <div class="panel panel-default" style="width: 44%; margin-top: 50px; margin-left:-100px;">
+
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Definir fecha de proximo comité</h4>
+                            </div>
+
                             <div class="panel-body">
                                 <div class="alert alert-success" style="display: none;"></div>
 
