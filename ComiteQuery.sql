@@ -1,3 +1,8 @@
+/****************************************************/
+DROP TABLE Cuenta_Usuario;
+DROP TRIGGER Trig_Cuenta_Usuario;
+DROP SEQUENCE AUTO_INCREMENT_Cuenta ;
+
 --Tabla de cuentas de usuarios
 create table Cuenta_Usuario(
 Id_Cuenta NUMBER PRIMARY KEY,
@@ -40,7 +45,9 @@ N_Ficha VARCHAR2 (6),
 Tipo_Queja VARCHAR2 (20),
 Descripcion VARCHAR2 (200),
 Especialidad VARCHAR2 (200),
-Evidencia BLOB 
+Evidencia BLOB,
+ANOMALIA VARCHAR2 (20),
+Fecha VARCHAR2 (20)
 );
 
 --CREAMOS PRIMERO UNA SECUENCIA PARA QUE TODOS LOS ID SEAN INCREMENTABLES 
@@ -68,7 +75,8 @@ DROP SEQUENCE AUTO_INCREMENT_Programas
 --Tabla de Programas
 create table Programas(
 Id_Programa NUMBER PRIMARY KEY,
-Nombre_Programa VARCHAR2 (200) UNIQUE
+Nombre_Programa VARCHAR2 (200) UNIQUE,
+Estado VARCHAR2 (20)
 );
 
 --CREAMOS PRIMERO UNA SECUENCIA PARA QUE TODOS LOS ID SEAN INCREMENTABLES 
@@ -87,27 +95,55 @@ CREATE TRIGGER Trig_Programas
 ;
 
 /****************************************************/
-DROP TABLE ProgramasTecnico
-DROP TRIGGER Trig_ProgramasTecnico
-DROP SEQUENCE AUTO_INCREMENT_ProgramasTecnico
+DROP TABLE ProgramasTecnico;
+DROP TRIGGER Trig_ProgramasTecnico;
+DROP SEQUENCE AUTO_INCREMENT_ProgramasTec;
 
 --Tabla de Programas
 create table ProgramasTecnico(
-Id_Programa NUMBER PRIMARY KEY,
-Nombre_Programa VARCHAR2 (200) UNIQUE
+Id_ProgramaTec NUMBER PRIMARY KEY,
+Nombre_ProgramaTec VARCHAR2 (200) UNIQUE,
+EstadoTec VARCHAR2 (20)
 );
 
 --CREAMOS PRIMERO UNA SECUENCIA PARA QUE TODOS LOS ID SEAN INCREMENTABLES 
-CREATE SEQUENCE AUTO_INCREMENT_ProgramasTecnico --nombre de la secuencia
+CREATE SEQUENCE AUTO_INCREMENT_ProgramasTec --nombre de la secuencia
 START WITH 1 --la secuencia empieza por 1
 INCREMENT BY 1 --se incrementa de uno en uno
 NOMAXVALUE; --no tiene valor maximo
 
 --Para que la secuencia se haga automaticamente se crea un tigger
 CREATE TRIGGER Trig_ProgramasTecnico
-  BEFORE INSERT ON Programas
+  BEFORE INSERT ON ProgramasTecnico
   FOR EACH ROW
   BEGIN
-    SELECT AUTO_INCREMENT_ProgramasTecnico.nextval INTO :new.Id_Programa FROM dual;
+    SELECT AUTO_INCREMENT_ProgramasTec.nextval INTO :new.Id_ProgramaTec FROM dual;
+  END
+;
+
+/****************************************************/
+DROP TABLE Fechas;
+DROP TRIGGER Trig_Fechas;
+DROP SEQUENCE AUTO_INCREMENT_Fechasc;
+
+--Tabla de Programas
+create table Fechas(
+Id_Fechas NUMBER PRIMARY KEY,
+Fecha_inicio VARCHAR2 (20),
+Fecha_fin VARCHAR2 (20)
+);
+
+--CREAMOS PRIMERO UNA SECUENCIA PARA QUE TODOS LOS ID SEAN INCREMENTABLES 
+CREATE SEQUENCE AUTO_INCREMENT_Fechas --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+--Para que la secuencia se haga automaticamente se crea un tigger
+CREATE TRIGGER Trig_Fechas
+  BEFORE INSERT ON Fechas
+  FOR EACH ROW
+  BEGIN
+    SELECT AUTO_INCREMENT_Fechas.nextval INTO :new.Id_Fechas FROM dual;
   END
 ;
