@@ -210,11 +210,11 @@
                                                 <div class="form-group col-lg-6">
                                                     <input class="form-control" placeholder="N° De Ficha" name="N_Ficha" type="text" value="">
                                                 </div>
-                                                
+
                                                 <div class="form-group col-lg-12">
-                                                    <input type="text" id="disabledTextInput" class="form-control"  name="Fecha" readonly="readonly" value="<%=Formato.format(Fecha)%>">
+                                                    <input type="hidden" id="disabledTextInput" class="form-control"  name="Fecha" readonly="readonly" value="<%=Formato.format(Fecha)%>">
                                                 </div>
-                                                
+
                                                 <div class="form-group col-lg-12">
                                                     <select name="opciones" onchange="recibir()" class="form-control">
                                                         <option value="">Nivel de formación</option>

@@ -57,7 +57,6 @@ public class ConQueja extends HttpServlet {
 //        }
 //        return Acion;
 //    }
-
     //Procedimiento validar la fecha de comite
     public boolean validaciónFecha(String Fecha) throws SQLException {
         String Fecha_inicio = "";
@@ -74,7 +73,7 @@ public class ConQueja extends HttpServlet {
         }
         return Acion;
     }
-    
+
     //Procedimiento para saber el numero de anomalias
     public String anomaliacont() throws SQLException {
         int num_anoma = 0;
@@ -156,9 +155,8 @@ public class ConQueja extends HttpServlet {
                     String Especialidad = request.getParameter("Especialidad");
                     String Anomalia = "Ver";
                     //String Evidencia = request.getParameter("fourthFile1");
-                    
+
                     //int Fecha = Integer.parseInt(FechaComite);
-                    
                     DatosQueja.setFecha(FechaComite);
                     DatosQueja.setNombre(Nombre);
                     DatosQueja.setApellido(Apellido);
