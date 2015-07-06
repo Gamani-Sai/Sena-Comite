@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entidad.EntQueja;
 import Modelo.Quejas;
+import Modelo.Fechas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +39,42 @@ public class ConQueja extends HttpServlet {
      */
     EntQueja DatosQueja = new EntQueja();
     Quejas Que = new Quejas();
+    Fechas Fech = new Fechas();
 
+//    //Procedimiento validar la fecha de comite
+//    public boolean validaciónFecha(int Fecha) throws SQLException {
+//        int Fecha_inicio = 0;
+//        int Fecha_fin = 0;
+//        boolean Acion = false;
+//        ResultSet Rs_Fechas = Fech.Fechas();
+//        while (Rs_Fechas.next()) {
+//            Fecha_inicio = Integer.parseInt(Rs_Fechas.getString("Fecha_inicio"));
+//            Fecha_fin = Integer.parseInt(Rs_Fechas.getString("Fecha_fin"));
+//        }
+//
+//        if (Fecha_inicio >= Fecha && Fecha_fin <= Fecha) {
+//            Acion = Que.InsertQueja(DatosQueja);
+//        }
+//        return Acion;
+//    }
+
+    //Procedimiento validar la fecha de comite
+    public boolean validaciónFecha(String Fecha) throws SQLException {
+        String Fecha_inicio = "";
+        String Fecha_fin = "";
+        boolean Acion = false;
+        ResultSet Rs_Fechas = Fech.Fechas();
+        while (Rs_Fechas.next()) {
+            Fecha_inicio = Rs_Fechas.getString("Fecha_inicio");
+            Fecha_fin = Rs_Fechas.getString("Fecha_fin");
+        }
+
+        if (Fecha_inicio.equals(Fecha) || Fecha_fin.equals(Fecha)) {
+            Acion = Que.InsertQueja(DatosQueja);
+        }
+        return Acion;
+    }
+    
     //Procedimiento para saber el numero de anomalias
     public String anomaliacont() throws SQLException {
         int num_anoma = 0;
@@ -106,11 +143,10 @@ public class ConQueja extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String Evento = request.getParameter("evento");
 
-            out.printf(anomaliacont());
-
             if (Evento != null) {
 
                 if (Evento.equals("Guardar")) {
+                    String FechaComite = request.getParameter("Fecha");
                     String Nombre = request.getParameter("Nombre");
                     String Apellido = request.getParameter("Apellido");
                     String Identificación = request.getParameter("Identificacion");
@@ -120,7 +156,10 @@ public class ConQueja extends HttpServlet {
                     String Especialidad = request.getParameter("Especialidad");
                     String Anomalia = "Ver";
                     //String Evidencia = request.getParameter("fourthFile1");
-
+                    
+                    //int Fecha = Integer.parseInt(FechaComite);
+                    
+                    DatosQueja.setFecha(FechaComite);
                     DatosQueja.setNombre(Nombre);
                     DatosQueja.setApellido(Apellido);
                     DatosQueja.setIdentificación(Identificación);
@@ -129,10 +168,10 @@ public class ConQueja extends HttpServlet {
                     DatosQueja.setDescripcion(Descripcion);
                     DatosQueja.setEspecialidad(Especialidad);
                     DatosQueja.setAnomalia(Anomalia);
-                    //DatosQueja.setEvidencia(Evidencia);
 
+                    //DatosQueja.setEvidencia(Evidencia);
                     //Que.InsertQueja(DatosQueja);
-                    if (Que.InsertQueja(DatosQueja)) {
+                    if (validaciónFecha(FechaComite)) {
                         alert += "<script type=\"text/javascript\">";
                         alert += "BootstrapDialog.show({\n"
                                 + "            type: BootstrapDialog.TYPE_SUCCESS,\n"

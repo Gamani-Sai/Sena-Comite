@@ -42,9 +42,9 @@
         <!-- Custom Fonts -->
         <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
-
-
+        <!-- Custom Fonts -->
+        <link href="css/Notify/prettify.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Notify/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -197,6 +197,17 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <!-- Notificación JavaScript -->
+        <script src="css/Notify/run_prettify.js" type="text/javascript"></script>
+        <script src="css/Notify/bootstrap-dialog.min.js" type="text/javascript"></script>
+
+        <%
+            String alerte = (String) request.getAttribute("alert");
+            if (alerte != null) {
+                out.print(alerte);
+            }
+        %>
 
         <!-- datetimepicker JavaScript -->
         <script src="css/datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>

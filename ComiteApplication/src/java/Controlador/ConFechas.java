@@ -38,6 +38,7 @@ public class ConFechas extends HttpServlet {
     EntFechas datosFechas = new EntFechas();
     Fechas Fech = new Fechas();
 
+    //Procedimiento que inserta o modifica las fecha para el comite
     public boolean FechaInsUpt() throws SQLException {
         String Fecha_inicio = "";
         String Fecha_fin = "";
@@ -46,13 +47,33 @@ public class ConFechas extends HttpServlet {
         while (Rs_Fechas.next()) {
             Fecha_inicio = Rs_Fechas.getString("Fecha_inicio");
             Fecha_fin = Rs_Fechas.getString("Fecha_fin");
-
-            if (Fecha_inicio != null && Fecha_fin != null) {
-            } else {
-                Acion = Fech.InsertFechas(datosFechas);
-            }
+        }
+        if (Fecha_inicio.equals("") && Fecha_fin.equals("")) {
+            Acion = Fech.InsertFechas(datosFechas);
+        } else {
+            Acion = Fech.modificarmodFechas(datosFechas);
         }
         return Acion;
+    }
+
+    //Procedimiento que lista los datos
+    public String listar() {
+
+        String tbl = "";
+        ResultSet Result = null;
+
+        try {
+            Result = Fech.Fechas();
+            while (Result.next()) {
+                tbl += "<tr>";
+                tbl += "<td><center>" + Result.getString("Fecha_inicio").toString().trim() + "</center></td>";
+                tbl += "<td><center>" + Result.getString("Fecha_fin").toString().trim() + "</center></td>";
+                tbl += "</tr>";
+            }
+        } catch (Exception ex) {
+            tbl = "error" + ex.getMessage();
+        }
+        return tbl;
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

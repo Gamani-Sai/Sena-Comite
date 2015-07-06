@@ -24,7 +24,7 @@ public class Quejas extends ConexionDB {
         conectarse();
         boolean retornarObj = false;
 
-        String insertQueja = "insert into Quejas (Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad,Anomalia) values (?,?,?,?,?,?,?,?)";
+        String insertQueja = "insert into Quejas (Nombre,Apellido,Identificación,N_Ficha,Tipo_Queja,Descripcion,Especialidad,Anomalia,Fecha) values (?,?,?,?,?,?,?,?,?)";
         try {
             Stmp();
             statement = conector.prepareStatement(insertQueja);
@@ -36,6 +36,7 @@ public class Quejas extends ConexionDB {
             statement.setString(6, DatosQueja.getDescripcion());
             statement.setString(7, DatosQueja.getEspecialidad());
             statement.setString(8, DatosQueja.getAnomalia());
+            statement.setString(9, DatosQueja.getFecha());
             //statement.setString(8, DatosQueja.getEvidencia());
 
             int cont = statement.executeUpdate();

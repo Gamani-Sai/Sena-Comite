@@ -56,5 +56,27 @@ public class Fechas extends ConexionDB {
         }
         return rs_traer_fechas;
     }
+    
+    //Procedimiento usado para modificar la fecha existente de comité
+    public boolean modificarmodFechas(EntFechas DatosFechas) {
+        conectarse();
+        boolean retornarObj = false;
+
+        String modFechas = "update Fechas set  Fecha_inicio = ?, Fecha_fin = ?";
+        try {
+            Stmp();
+            statemen = conector.prepareStatement(modFechas);
+            statemen.setString(1, DatosFechas.getFecha_inicio());
+            statemen.setString(2, DatosFechas.getFecha_fin());
+
+            int cont = statemen.executeUpdate();
+            if (cont > 0) {
+                retornarObj = true;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return retornarObj;
+    }
 
 }

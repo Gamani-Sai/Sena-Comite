@@ -4,8 +4,15 @@
     Author     : gestion
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Controlador.ConQueja"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    java.util.Date Fecha = new java.util.Date();
+    SimpleDateFormat Formato = new SimpleDateFormat("MM/dd/yyyy");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,21 +83,22 @@
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                            <span class="btn-block"><i class="fa fa-bell fa-fw"></i> <%ConQueja listQueja = new ConQueja(); out.println(listQueja.anomaliacont());%> <i class="fa fa-caret-down"></i> </span>
+                            <span class="btn-block"><i class="fa fa-bell fa-fw"></i> <%ConQueja listQueja = new ConQueja();
+                                out.println(listQueja.anomaliacont());%> <i class="fa fa-caret-down"></i> </span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
                             <li>
                                 <table id="tblArea" class="table2 table-hover" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th  class="text-center">Quejas nuevas</th>
+                                            <th  class="text-center">Nuevas quejas</th>
                                             <th class="text-center">Ir</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="traer1">
+                                    <tbody>
                                     <input class="form-control" id="Id_QuejaDelete" name="Id_QuejaDelete" type="hidden">
                                     <%
-                                        
+
                                         out.println(listQueja.listaranom());
                                     %>
                                     </tbody>
@@ -202,7 +210,11 @@
                                                 <div class="form-group col-lg-6">
                                                     <input class="form-control" placeholder="N° De Ficha" name="N_Ficha" type="text" value="">
                                                 </div>
-
+                                                
+                                                <div class="form-group col-lg-12">
+                                                    <input type="text" id="disabledTextInput" class="form-control"  name="Fecha" readonly="readonly" value="<%=Formato.format(Fecha)%>">
+                                                </div>
+                                                
                                                 <div class="form-group col-lg-12">
                                                     <select name="opciones" onchange="recibir()" class="form-control">
                                                         <option value="">Nivel de formación</option>

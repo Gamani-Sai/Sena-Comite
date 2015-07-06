@@ -4,6 +4,7 @@
     Author     : gestion
 --%>
 
+<%@page import="Controlador.ConFechas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +58,7 @@
                                 </fieldset>
 
 
+
                             </form>
                         </div>
 
@@ -68,6 +70,49 @@
                     </div>
                 </div>
             </div>
+
+            <div class="alert alert-success" role="alert" style="width: 24%; margin-left: 937px;margin-top: -30%;">
+                <strong>Fecha para próximo  comité</strong>
+                <button type="button" class="btn btn-info fa fa-eye" data-toggle="modal" data-target=".bs-example-modal-sm" style="margin-left: 9px;"></button>
+            </div>
+
+
+            <!--Modal de programas --> 
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Fecha</h4>
+                        </div>
+                        <form id="defaultForm" action="" method="POST">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active">
+                                            <table id="tblCuenta" class="table table-hover" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Fecha inicio</th> 
+                                                        <th class="text-center">Fecha fin</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        ConFechas list_Fechas = new ConFechas();
+                                                        out.println(list_Fechas.listar());
+                                                    %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- jQuery -->

@@ -10,6 +10,7 @@ package Entidad;
  * @author gestion
  */
 public class EntQueja {
+
     private int Id_Queja = 0;
     private String Nombre = "";
     private String Apellido = "";
@@ -17,9 +18,10 @@ public class EntQueja {
     private String N_Ficha = "";
     private String Tipo_Queja = "";
     private String Descripcion = "";
-    private String Especialidad="";
-    private String Evidencia="";
-    private String Anomalia="";
+    private String Especialidad = "";
+    private String Evidencia = "";
+    private String Anomalia = "";
+    private String Fecha = "";
 
     /**
      * @return the Id_Queja
@@ -160,4 +162,19 @@ public class EntQueja {
     public void setAnomalia(String Anomalia) {
         this.Anomalia = Anomalia;
     }
+
+    /**
+     * @return the Fecha
+     */
+    public String getFecha() {
+        return Fecha;
+    }
+
+    /**
+     * @param Fecha the Fecha to set
+     */
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
+    }
+
 }
