@@ -124,7 +124,7 @@ public class ConQueja extends HttpServlet {
             while (list_anom.next()) {
                 Recorrertbl += "<tr>";
                 Recorrertbl += "<td><center><i class='fa fa-envelope'></i> " + list_anom.getString("Nombre").toString().trim() + "</center></td>";
-                Recorrertbl += "<td><center><a href='ConsultarQueja.jsp' class='fa fa-list-ul'></a></center></td>";
+                Recorrertbl += "<td><center><a href='ConsultarQueja.jsp' class='fa fa-list-ul' onclik='estado_cam('Visto',"+ list_anom.getString("ID_QUEJA").toString().trim() +")'></a></center></td>";
                 Recorrertbl += "</tr>";
             }
         } catch (Exception e) {
@@ -218,9 +218,10 @@ public class ConQueja extends HttpServlet {
                 }
 
                 if (Evento.equals("Anomalia")) {
-                    String Anomalia = "Visto";
-                    DatosQueja.setAnomalia(Anomalia);
-
+                    String estado = request.getParameter("estado");
+                    int id = Integer.parseInt(request.getParameter("ID_QUEJA"));
+                    DatosQueja.setAnomalia(estado);
+                    DatosQueja.setId_Queja(id);
                     Que.modificarAnomalia(DatosQueja);
                 }
 

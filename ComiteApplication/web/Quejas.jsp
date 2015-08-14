@@ -96,7 +96,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <input class="form-control" id="Id_QuejaDelete" name="Id_QuejaDelete" type="hidden">
+                                    <input class="form-control" id="Id_QuejaDelete"  name="Id_QuejaDelete" type="hidden">
                                     <%
 
                                         out.println(listQueja.listaranom());
@@ -522,6 +522,29 @@
                         minimumInputLength: 2
                     });
 
+                });
+            }
+
+            function estado_cam(paramtro, ID_QUEJA) {
+                $.ajax({
+                    dataType: "html",
+                    data: {
+                        evento: "Anomalia",
+                        estado: paramtro,
+                        id: ID_QUEJA
+
+                    },
+                    type: "POST",
+                    url: "ConQueja",
+                    statusCode: {
+                        404: function () {
+                            alert("page not found");
+                        }
+                    }
+                }).done(function (datos) {
+
+                    $("#traer").empty();
+                    $("#traer").append(datos);
                 });
             }
 

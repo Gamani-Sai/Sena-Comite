@@ -44,14 +44,14 @@ public class ajaxProgramas extends HttpServlet {
 
         if (Radio.equals("Tecnologo")) {
             Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
-            Rs = Pro.traerProgramas();
+            Rs = Pro.traerProgramas1();
             while (Rs.next()) {
                 Recorrer += "<option  value='" + Rs.getString("Nombre_Programa") + "' >" + Rs.getString("Nombre_Programa") + "</option>";
             }
             Recorrer += "</select>";
         } else if (Radio.equals("Tecnico")) {
             Recorrer += "<select name=\"Especialidad\"  id=\"select2\">";
-            Rs = Pro.traerProgramasTec();
+            Rs = Pro.traerProgramasTec1();
             while (Rs.next()) {
                 Recorrer += "<option  value='" + Rs.getString("Nombre_ProgramaTec") + "' >" + Rs.getString("Nombre_ProgramaTec") + "</option>";
             }

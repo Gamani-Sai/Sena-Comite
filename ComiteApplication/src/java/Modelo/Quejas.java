@@ -160,12 +160,9 @@ public class Quejas extends ConexionDB {
         try {
             Stmp();
             statement = conector.prepareStatement(modInfoAprendiz);
-            statement.setString(1, datosQueja.getNombre());
-            statement.setString(2, datosQueja.getApellido());
-            statement.setString(3, datosQueja.getIdentificación());
-            statement.setString(4, datosQueja.getN_Ficha());
-            //statement.setString(5, datosQueja.getEspecialidad());
-            statement.setInt(5, datosQueja.getId_Queja());
+            statement.setString(1, datosQueja.getAnomalia());
+            statement.setInt(2, datosQueja.getId_Queja());
+            
 
             int cont = statement.executeUpdate();
             if (cont > 0) {

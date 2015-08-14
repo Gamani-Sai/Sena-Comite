@@ -54,11 +54,11 @@ public class ConProgramas extends HttpServlet {
                 if (Result.getString("Estado").toString().trim().equals("Habilitado")) {
                     colorEstado = "success";
                     iconoEstado = "ok-circle";
-                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ")";
+                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ",'tecnologo')";
                 } else if (Result.getString("Estado").toString().trim().equals("Inhabilitado")) {
                     colorEstado = "danger";
                     iconoEstado = "remove-circle";
-                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ")";
+                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMA").toString().trim() + ",'tecnologo')";
                 }
                 tbl += "<td><center><div id='cambio_est'><button  class='btn btn-" + colorEstado + " glyphicon glyphicon-" + iconoEstado + "' onclick =" + nomFuncion + "></button></center></div></center></td>";
                 tbl += "</tr>";
@@ -69,16 +69,17 @@ public class ConProgramas extends HttpServlet {
             while (Result.next()) {
                 tbl += "<tr>";
                 tbl += "<td style='display:none'><center>" + Result.getString("ID_PROGRAMATEC").toString().trim() + "</center></td>";
+    
                 tbl += "<td><center>" + Result.getString("Nombre_ProgramaTec").toString().trim() + "</center></td>";
 
                 if (Result.getString("EstadoTec").toString().trim().equals("Habilitado")) {
                     colorEstado = "success";
                     iconoEstado = "ok-circle";
-                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ")";
+                    nomFuncion = "Estado_habilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ",'tecnico')";
                 } else if (Result.getString("EstadoTec").toString().trim().equals("Inhabilitado")) {
                     colorEstado = "danger";
                     iconoEstado = "remove-circle";
-                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ")";
+                    nomFuncion = "Estado_inhabilitado(" + Result.getString("ID_PROGRAMATEC").toString().trim() + ",'tecnico')";
                 }
                 tbl += "<td><center><div id='cambio_est'><button  class='btn btn-" + colorEstado + " glyphicon glyphicon-" + iconoEstado + "' onclick =" + nomFuncion + "></button></center></div></center></td>";
                 tbl += "</tr>";
@@ -103,7 +104,7 @@ public class ConProgramas extends HttpServlet {
             String ConTecnolo = "Tecnologo";
             String ConTec = "Tecnico";
             String estado = request.getParameter("estado_mod");
-            String recargar = request.getParameter("recargar");
+           
 
             if (Evento.equals("Guardar")) {
 
@@ -216,16 +217,22 @@ public class ConProgramas extends HttpServlet {
                         getServletConfig().getServletContext().getRequestDispatcher("/Programas.jsp").forward(request, response);
                     }
                 }
-            } else if (estado != null) {
+            } else if (Evento.equals("recargue")) {
+                out.println(listar());
+            }else if (Evento.equals("cam_estado")) {
+                
+                
+                //......-----------------------------------//
                 int id_programas_mod = Integer.parseInt(request.getParameter("idprogramas_mod"));
+                String tipo = request.getParameter("tipo");
                 DatosProgramas.setId_Programa(id_programas_mod);
                 DatosProgramas.setEstado(estado);
-                Pro.cambiar_estado(DatosProgramas);
-                Pro.cambiar_estadotec(DatosProgramas);
-
-            } else if (recargar != null) {
-                out.println(listar());
-            }
+                if (tipo.equals("tecnico")){
+                    Pro.cambiar_estadotec(DatosProgramas);
+                }else if(tipo.equals("tecnologo")){
+                     Pro.cambiar_estado(DatosProgramas);
+                }
+            } 
         }
     }
 

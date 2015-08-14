@@ -48,7 +48,7 @@ public class Reportes extends ConexionDB {
         ResultSet result = null;
         conectarse();
 
-        String consulCuenta = "SELECT ID_QUEJA,(Nombre || ' ' || Apellido) AS Nombre_com,Nombre,Apellido,Identificación,N_Ficha,Fecha,Descripcion FROM Quejas where  Nombre = 'Jean' order by Nombre_com";
+        String consulCuenta = "SELECT ID_QUEJA,(Nombre || ' ' || Apellido) AS Nombre_com,Nombre,Apellido,Identificación,N_Ficha,Fecha,Descripcion FROM Quejas where  Nombre = 'Santiago' order by Nombre_com";
         try {
             consulta = conector.createStatement();
             result = consulta.executeQuery(consulCuenta);

@@ -68,7 +68,7 @@ public class Programas extends ConexionDB {
         ResultSet rsp = null;
         conectarse();
 
-        String profesor = "select ID_PROGRAMA,Nombre_Programa,Estado  from Programas ";
+        String profesor = "select ID_PROGRAMA,Nombre_Programa,Estado  from Programas";
         try {
             consulta = conector.createStatement();
             rsp = consulta.executeQuery(profesor);
@@ -84,7 +84,7 @@ public class Programas extends ConexionDB {
         ResultSet rsp = null;
         conectarse();
 
-        String profesor = "select ID_PROGRAMATEC, Nombre_ProgramaTec , EstadoTec  from ProgramasTecnico ";
+        String profesor = "select ID_PROGRAMATEC, Nombre_ProgramaTec , EstadoTec  from ProgramasTecnico";
         try {
             consulta = conector.createStatement();
             rsp = consulta.executeQuery(profesor);
@@ -93,6 +93,39 @@ public class Programas extends ConexionDB {
         }
         return rsp;
     }
+    
+    //Para traer todos los programas tecnologos
+    public ResultSet traerProgramas1() {
+
+        ResultSet rsp = null;
+        conectarse();
+
+        String profesor = "select ID_PROGRAMA,Nombre_Programa,Estado  from Programas where Estado ='Habilitado'";
+        try {
+            consulta = conector.createStatement();
+            rsp = consulta.executeQuery(profesor);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rsp;
+    }
+
+    //Para traer todos los programas tecnicos
+    public ResultSet traerProgramasTec1() {
+
+        ResultSet rsp = null;
+        conectarse();
+
+        String profesor = "select ID_PROGRAMATEC, Nombre_ProgramaTec , EstadoTec  from ProgramasTecnico where EstadoTec ='Habilitado' ";
+        try {
+            consulta = conector.createStatement();
+            rsp = consulta.executeQuery(profesor);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rsp;
+    }
+    
     
     //Para cambiar el estado tabla tecnologo
     public boolean cambiar_estado(EntProgramas datosProgramas) {

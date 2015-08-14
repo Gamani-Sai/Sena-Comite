@@ -351,7 +351,8 @@
                 $.ajax({
                     dataType: "html",
                     data: {
-                        recargar: "recargue"
+                        evento: "recargue"
+
 
                     },
                     type: "POST",
@@ -367,12 +368,14 @@
                 });
             }
 
-            function Estado_habilitado(ID_PROGRAMATEC) {
+            function Estado_habilitado(ID_PROGRAMATEC, tipo) {
                 $.ajax({
                     dataType: "html",
                     data: {
+                        evento: "cam_estado",
                         idprogramas_mod: ID_PROGRAMATEC,
-                        estado_mod: "Inhabilitado"
+                        estado_mod: "Inhabilitado",
+                        tipo: tipo
                     },
                     type: "POST",
                     url: "ConProgramas",
@@ -384,16 +387,19 @@
                 }).done(function (datos) {
                     $("#cambio_est").empty();
                     $("#cambio_est").append(datos);
-                    cargar();
+                    
                 });
+                cargar();
 
             }
-            function Estado_inhabilitado(ID_PROGRAMATEC) {
+            function Estado_inhabilitado(ID_PROGRAMATEC, tipo) {
                 $.ajax({
                     dataType: "html",
                     data: {
+                        evento: "cam_estado",
                         idprogramas_mod: ID_PROGRAMATEC,
-                        estado_mod: "Habilitado"
+                        estado_mod: "Habilitado",
+                        tipo: tipo
                     },
                     type: "POST",
                     url: "ConProgramas",
@@ -405,8 +411,9 @@
                 }).done(function (datos) {
                     $("#cambio_est").empty();
                     $("#cambio_est").append(datos);
-                    cargar();
+                    
                 });
+                cargar();
             }
         </script>
 

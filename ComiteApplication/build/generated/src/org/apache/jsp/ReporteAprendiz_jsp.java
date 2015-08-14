@@ -254,17 +254,17 @@ public final class ReporteAprendiz_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                        <thead>\n");
       out.write("                            <tr>\n");
       out.write("                                <th><center>Nombre</center></th>\n");
-      out.write("                        <th><center>Identificación</center></th>\n");
-      out.write("                        <th><center>Ficha</center></th>\n");
-      out.write("                        <th><center>Fecha Comité</center></th>\n");
-      out.write("                        <th><center>Queja</center></th>\n");
-      out.write("                        </tr>\n");
+      out.write("                                <th><center>Identificación</center></th>\n");
+      out.write("                                <th><center>Ficha</center></th>\n");
+      out.write("                                <th><center>Fecha Comité</center></th>\n");
+      out.write("                                <th><center>Queja</center></th>\n");
+      out.write("                            </tr>\n");
       out.write("                        </thead>\n");
       out.write("                        <tbody>\n");
       out.write("                            ");
 
                                 ConReportes listreporte = new ConReportes();
-                               // out.print(listreporte.listar());
+                                out.print(listreporte.listar());
                             
       out.write("\n");
       out.write("                        </tbody>\n");
