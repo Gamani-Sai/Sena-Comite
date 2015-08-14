@@ -99,7 +99,7 @@
                                 <a href="Citacion.jsp"><i class="fa fa-edit fa-fw"></i> Citación Aprendiz Comite</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
+                                <a href="Comite.jsp"><i class="fa fa-table fa-fw"></i> Comite De Evaluación</a>
                             </li>
 
                             <li>
