@@ -180,275 +180,261 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-
-                <center>  
-                    <form id="defaultForm" action="ConQueja" method="POST">
-                        <div class="panel panel-default" style="width: 77%; margin-top: 48px;">
-                            <div class="panel-body">
-                                <div class="tab-content">
-
-                                    <%
-                                        ConComite listComite = new ConComite();
-                                        out.print(listComite.listar());
-                                    %>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        </div>
-                    </form>
+                <center>
+                    <%
+                        ConComite listComite = new ConComite();
+                        out.print(listComite.listar());
+                    %>
                 </center>
+                <!-- /page-wrapper -->
             </div>
-            <!-- /page-wrapper -->
-        </div>
-        <!-- /#wrapper -->
+            <!-- /#wrapper -->
 
-        <footer>
-            <p>Posted by: Hege Refsnes</p>
-            <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a></p>
-        </footer>
+            <footer>
+                <p>Posted by: Hege Refsnes</p>
+                <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a></p>
+            </footer>
 
 
-        <!-- jQuery -->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
+            <!-- jQuery -->
+            <script src="js/jquery.min.js" type="text/javascript"></script>
 
-        <script src="js/MapeoDatos.js" type="text/javascript"></script>
+            <script src="js/MapeoDatos.js" type="text/javascript"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-        <!-- Jquery Validate JavaScript -->
-        <script src="js/formValidation.js" type="text/javascript"></script>
-        <script src="js/bootstrap.js" type="text/javascript"></script>
+            <!-- Jquery Validate JavaScript -->
+            <script src="js/formValidation.js" type="text/javascript"></script>
+            <script src="js/bootstrap.js" type="text/javascript"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="css/metisMenu/metisMenu.min.js" type="text/javascript"></script>
 
-        <!-- Morris Charts JavaScript -->
-        <script src="js/raphael-min.js" type="text/javascript"></script>
-        <script src="js/morris.min.js" type="text/javascript"></script>
+            <!-- Morris Charts JavaScript -->
+            <script src="js/raphael-min.js" type="text/javascript"></script>
+            <script src="js/morris.min.js" type="text/javascript"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="js/sb-admin-2.js" type="text/javascript"></script>
+            <!-- Custom Theme JavaScript -->
+            <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
-        <!-- Notificación JavaScript -->
-        <script src="css/Notify/run_prettify.js" type="text/javascript"></script>
-        <script src="css/Notify/bootstrap-dialog.min.js" type="text/javascript"></script>
+            <!-- Notificación JavaScript -->
+            <script src="css/Notify/run_prettify.js" type="text/javascript"></script>
+            <script src="css/Notify/bootstrap-dialog.min.js" type="text/javascript"></script>
 
-        <%
-            String alerte = (String) request.getAttribute("alert");
-            if (alerte != null) {
-                out.print(alerte);
-            }
-        %>
+            <%
+                String alerte = (String) request.getAttribute("alert");
+                if (alerte != null) {
+                    out.print(alerte);
+                }
+            %>
 
-        <!-- FileUploader JavaScript -->
-        <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
-        <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
+            <!-- FileUploader JavaScript -->
+            <script src="css/fileinput/fileinput.min.js" type="text/javascript"></script>
+            <script src="css/fileinput/fileinput_locale_es.js" type="text/javascript"></script>
 
-        <script>
-            $('#file-es').fileinput({
-                language: 'es',
-                uploadUrl: '#',
-                allowedFileExtensions: ['jpg', 'png', 'gif'],
-            });
-        </script>
-
-        <!-- Select2 JavaScript -->
-        <script src="css/select/select2.min.js" type="text/javascript"></script>
-
-        <!-- Script Validación -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#defaultForm').formValidation({
-                    message: 'This value is not valid',
-                    excluded: ':disabled',
-                    err: {
-                        container: 'tooltip'
-                    },
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        Nombre: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        },
-                        Apellido: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        },
-                        Identificacion: {
-                            message: 'Identificación no valida',
-                            validators: {
-                                notEmpty: {
-                                    message: 'Identificación requerida'
-                                },
-                                digits: {
-                                    message: 'Solo numeros'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 11,
-                                    message: 'Minimo 6 y Maximo 11 caracteres'
-                                }
-                            }
-                        },
-                        N_Ficha: {
-                            message: 'Ficha no valida',
-                            validators: {
-                                notEmpty: {
-                                    message: 'Ficha requerida'
-                                },
-                                digits: {
-                                    message: 'Solo numeros'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 6,
-                                    message: 'Maximo 6'
-                                }
-                            }
-                        },
-                        opciones: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The country is required and can\'t be empty'
-                                }
-                            }
-                        },
-                        TipoQueja: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The country is required and can\'t be empty'
-                                }
-                            }
-                        },
-                        Descricion: {
-                            validators: {
-                                stringLength: {
-                                    enabled: false,
-                                    min: 4,
-                                    message: 'The first name must be more than 5 characters'
-                                },
-                                notEmpty: {
-                                    message: 'The first name is required'
-                                },
-                                regexp: {
-                                    enabled: true,
-                                    regexp: /^[a-z]+$/i,
-                                    message: 'The first name must consist of a-z, A-Z characters only'
-                                }
-                            }
-                        }, fourthFile: {
-                            validators: {
-                                file: {
-                                    extension: 'png,jpg',
-                                    maxSize: 10 * 1024 * 1024,
-                                    message: 'Please choose a pdf file with a size Max 10M.'
-                                }
-                            }
-                        }
-                    }
-                }).on('err.form.fv', function (e) {
-                    console.log('error');
-                    // Active the panel element containing the first invalid element
-                    var $form = $(e.target),
-                            validator = $form.data('formValidation'),
-                            $invalidField = validator.getInvalidFields().eq(0),
-                            $collapse = $invalidField.parents('.collapse');
-                    $collapse.collapse('show');
+            <script>
+                $('#file-es').fileinput({
+                    language: 'es',
+                    uploadUrl: '#',
+                    allowedFileExtensions: ['jpg', 'png', 'gif'],
                 });
-            });
-        </script>
+            </script>
 
-        <script>
-            $(function () {
-                recibir();
+            <!-- Select2 JavaScript -->
+            <script src="css/select/select2.min.js" type="text/javascript"></script>
 
-            });
-
-            function recibir() {
-                var valor = $("select[name='opciones']").val();
-                //alert(valor);
-                $.ajax({
-                    dataType: "html",
-                    data: {
-                        opciones: valor
-                    },
-                    type: "POST",
-                    url: "ajaxProgramas",
-                    statusCode: {
-                        404: function () {
-                            alert("page not found");
+            <!-- Script Validación -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#defaultForm').formValidation({
+                        message: 'This value is not valid',
+                        excluded: ':disabled',
+                        err: {
+                            container: 'tooltip'
+                        },
+                        icon: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            Nombre: {
+                                validators: {
+                                    stringLength: {
+                                        enabled: false,
+                                        min: 4,
+                                        message: 'The first name must be more than 5 characters'
+                                    },
+                                    notEmpty: {
+                                        message: 'The first name is required'
+                                    },
+                                    regexp: {
+                                        enabled: true,
+                                        regexp: /^[a-z]+$/i,
+                                        message: 'The first name must consist of a-z, A-Z characters only'
+                                    }
+                                }
+                            },
+                            Apellido: {
+                                validators: {
+                                    stringLength: {
+                                        enabled: false,
+                                        min: 4,
+                                        message: 'The first name must be more than 5 characters'
+                                    },
+                                    notEmpty: {
+                                        message: 'The first name is required'
+                                    },
+                                    regexp: {
+                                        enabled: true,
+                                        regexp: /^[a-z]+$/i,
+                                        message: 'The first name must consist of a-z, A-Z characters only'
+                                    }
+                                }
+                            },
+                            Identificacion: {
+                                message: 'Identificación no valida',
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Identificación requerida'
+                                    },
+                                    digits: {
+                                        message: 'Solo numeros'
+                                    },
+                                    stringLength: {
+                                        min: 6,
+                                        max: 11,
+                                        message: 'Minimo 6 y Maximo 11 caracteres'
+                                    }
+                                }
+                            },
+                            N_Ficha: {
+                                message: 'Ficha no valida',
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Ficha requerida'
+                                    },
+                                    digits: {
+                                        message: 'Solo numeros'
+                                    },
+                                    stringLength: {
+                                        min: 6,
+                                        max: 6,
+                                        message: 'Maximo 6'
+                                    }
+                                }
+                            },
+                            opciones: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'The country is required and can\'t be empty'
+                                    }
+                                }
+                            },
+                            TipoQueja: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'The country is required and can\'t be empty'
+                                    }
+                                }
+                            },
+                            Descricion: {
+                                validators: {
+                                    stringLength: {
+                                        enabled: false,
+                                        min: 4,
+                                        message: 'The first name must be more than 5 characters'
+                                    },
+                                    notEmpty: {
+                                        message: 'The first name is required'
+                                    },
+                                    regexp: {
+                                        enabled: true,
+                                        regexp: /^[a-z]+$/i,
+                                        message: 'The first name must consist of a-z, A-Z characters only'
+                                    }
+                                }
+                            }, fourthFile: {
+                                validators: {
+                                    file: {
+                                        extension: 'png,jpg',
+                                        maxSize: 10 * 1024 * 1024,
+                                        message: 'Please choose a pdf file with a size Max 10M.'
+                                    }
+                                }
+                            }
                         }
-                    }
-                }).done(function (datos) {
-
-                    $("#traer").empty();
-                    $("#traer").append(datos);
-
-                    $("#select2").select2({
-                        minimumInputLength: 2
+                    }).on('err.form.fv', function (e) {
+                        console.log('error');
+                        // Active the panel element containing the first invalid element
+                        var $form = $(e.target),
+                                validator = $form.data('formValidation'),
+                                $invalidField = validator.getInvalidFields().eq(0),
+                                $collapse = $invalidField.parents('.collapse');
+                        $collapse.collapse('show');
                     });
+                });
+            </script>
+
+            <script>
+                $(function () {
+                    recibir();
 
                 });
-            }
 
-            function estado_cam(paramtro, ID_QUEJA) {
-                $.ajax({
-                    dataType: "html",
-                    data: {
-                        evento: "Anomalia",
-                        estado: paramtro,
-                        id: ID_QUEJA
-
-                    },
-                    type: "POST",
-                    url: "ConQueja",
-                    statusCode: {
-                        404: function () {
-                            alert("page not found");
+                function recibir() {
+                    var valor = $("select[name='opciones']").val();
+                    //alert(valor);
+                    $.ajax({
+                        dataType: "html",
+                        data: {
+                            opciones: valor
+                        },
+                        type: "POST",
+                        url: "ajaxProgramas",
+                        statusCode: {
+                            404: function () {
+                                alert("page not found");
+                            }
                         }
-                    }
-                }).done(function (datos) {
+                    }).done(function (datos) {
 
-                    $("#traer").empty();
-                    $("#traer").append(datos);
-                });
-            }
+                        $("#traer").empty();
+                        $("#traer").append(datos);
+
+                        $("#select2").select2({
+                            minimumInputLength: 2
+                        });
+
+                    });
+                }
+
+                function estado_cam(paramtro, ID_QUEJA) {
+                    $.ajax({
+                        dataType: "html",
+                        data: {
+                            evento: "Anomalia",
+                            estado: paramtro,
+                            id: ID_QUEJA
+
+                        },
+                        type: "POST",
+                        url: "ConQueja",
+                        statusCode: {
+                            404: function () {
+                                alert("page not found");
+                            }
+                        }
+                    }).done(function (datos) {
+
+                        $("#traer").empty();
+                        $("#traer").append(datos);
+                    });
+                }
 
 
-        </script>         
+            </script>         
 
     </body>
 
